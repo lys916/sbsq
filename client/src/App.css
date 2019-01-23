@@ -1,0 +1,119 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.borderLeft {
+  border: 1px solid #dedede;
+}
+
+.col {
+  width: 7.5vw; 
+  height: 7.5vw;
+  border-right: 1px solid #bbbbbb;
+  background: white;
+  line-height: 7.5vw;
+}
+
+.yourSquare {
+  background: rgb(172, 172, 172);
+}
+
+
+.winning {
+  background: rgb(21, 255, 0);
+}
+
+.ramsScoreTd {
+  background: #00ffd5;
+}
+
+.ramsScoreFg {
+  background: #23a7ff;
+}
+
+.ramsScoreSafety {
+  background: #686aff;
+}
+
+.ramsXpNoGood {
+  background: #a659ff;
+}
+/* PATRIOT */
+.patsScoreTd {
+  background: #e5ff00;
+}
+
+.patsScoreFg {
+  background: rgb(253, 194, 0);
+}
+
+.patsScoreSafety {
+  background: #ff4e48;
+}
+
+.patsXpNoGood {
+  background: rgb(255, 51, 211);
+}
+
+
+.flex {
+  display: flex;
+}
+
+.colorBox {
+  width: 4.2vw;
+  height: 4.2vw;
+  margin: 1px;
+}
+.winningBox {
+  padding: 10px 0px;
+}
+.codeText {
+  font-size: 12px;
+  padding-left: 5px;
+  padding-top: 1px;
+}
+
+.border {border: 1px solid red;}
+.between {justify-content: space-between;}
+.around {justify-content: space-around;}
+.center {justify-content: center;}
+.borderGray {
+  border: 1px solid gray;
+}
+.pad5 {padding: 5px};
+
+.padTopBottomTen {
+  padding: 10px 0px;
+}
+
+
