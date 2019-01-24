@@ -31,12 +31,14 @@ const styles = {
 		color: '#ffcd00', 
 		letterSpacing: 6,
 		textAlign: 'center',
-		lineHeight: '7.5vw'
+		lineHeight: '7.5vw',
+		fontSize: '4.5vw'
 	},
-  leftName: {background: 'gray', background: '#002244', color: 'white'},
+  leftName: {background: 'gray', background: '#002244', color: 'white', fontSize: '4.7vw', color: '#C60C30'},
   ramsNumWrap: {
 		display: 'flex', 
 		background: '#dedede',
+		
 		// justifyContent:'center',
     // alignContent:'center',
     // flexDirection:'row', /* column | row */
@@ -48,13 +50,15 @@ const styles = {
 		lineHeight: '7.5vw', 
 		background: '#dedede', 
 		borderRight: '1px solid #bbbbbb',
+		fontSize: '4.5vw'
 	},
   patsNum: {
 		display: 'flex', 
 		height: '7.5vw', 
 		background: '#dedede', 
 		borderBottom: '1px solid #bbbbbb',
-		lineHeight: '7.5vw'
+		lineHeight: '7.5vw',
+		fontSize: '4.5vw'
 	},
 
   row: {display: 'flex', height: '7.5vw', borderBottom: '1px solid #bbbbbb'
@@ -313,10 +317,12 @@ class Squares extends Component {
 												const patsFgString = (Number(patsScore)+3).toString();
 												const patsSafetyString = (Number(patsScore)+2).toString();
 												const patsNoXpString = (Number(patsScore)+6).toString();
+												const patsTdGoForTwoString = (Number(patsScore)+8).toString();
 												const patsTdLastDigit = patsTdString[patsTdString.length- 1];
 												const patsFgLastDigit = patsFgString[patsFgString.length- 1];
 												const patsSafetyLastDigit = patsSafetyString[patsSafetyString.length- 1];
 												const patsNoXpLastDigit = patsNoXpString[patsNoXpString.length- 1];
+												const patsForTwoLastDigit = patsTdGoForTwoString[patsTdGoForTwoString.length- 1];
 
 												//Rams num and score calculations ********
 												const ramsScore = this.state.score[1];
@@ -326,10 +332,12 @@ class Squares extends Component {
 												const ramsFgString = (Number(ramsScore)+3).toString();
 												const ramsSafetyString = (Number(ramsScore)+2).toString();
 												const ramsNoXpString = (Number(ramsScore)+6).toString();
+												const ramsTdGoForTwoString = (Number(ramsScore)+8).toString();
 												const ramsTdLastDigit = ramsTdString[ramsTdString.length- 1];
 												const ramsFgLastDigit = ramsFgString[ramsFgString.length- 1];
 												const ramsSafetyLastDigit = ramsSafetyString[ramsSafetyString.length- 1];
 												const ramsNoXpLastDigit = ramsNoXpString[ramsNoXpString.length- 1];
+												const ramsForTwoLastDigit = ramsTdGoForTwoString[ramsTdGoForTwoString.length- 1];
 
 												//get winning cell
 												const winning = ramsNum === ramsScoreLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
@@ -358,6 +366,12 @@ class Squares extends Component {
 												const ramsXpNoGoodOp = ramsNum === patsScoreLastDigit && patsNum === ramsNoXpLastDigit && this.state.squares;
 												//
 
+												
+												const ramsTdGoForTwo = ramsNum === ramsForTwoLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
+
+												const ramsTdGoForTwoOp = ramsNum === patsScoreLastDigit && patsNum === ramsForTwoLastDigit && this.state.squares;
+												//
+
 												//pats next score
 												const patsNeedTd = patsNum === patsTdLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
@@ -377,6 +391,11 @@ class Squares extends Component {
 												const patsXpNoGood = patsNum === patsNoXpLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
 												const patsXpNoGoodOp = patsNum === ramsScoreLastDigit && ramsNum === patsNoXpLastDigit && this.state.squares;
+												//
+
+												const patsTdGoForTwo = patsNum === patsForTwoLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
+
+												const patsTdGoForTwoOp = patsNum === ramsScoreLastDigit && ramsNum === patsForTwoLastDigit && this.state.squares;
 												//
 
 
@@ -403,6 +422,8 @@ class Squares extends Component {
 														${patsXpNoGood ? 'patsXpNoGood' : null} 
 														
 														${patsNeedSafety ? 'patsScoreSafety' : null}
+														${patsTdGoForTwo ? 'patsTdGoForTwo' : null}
+														${ramsTdGoForTwo ? 'ramsTdGoForTwo' : null}
 														
 														`}
 														onClick={()=>{this.pickSq(num, user)}}>
@@ -416,6 +437,8 @@ class Squares extends Component {
 															${ramsNeedTdOp ? 'ramsScoreTdOp' : null}
 															${ramsNeedFgOp ? 'ramsScoreFgOp' : null}
 															${ramsXpNoGoodOp ? 'ramsXpNoGoodOp' : null}
+															${ramsTdGoForTwoOp ? 'ramsTdGoForTwoOp' : null}
+															${patsTdGoForTwoOp ? 'patsTdGoForTwoOp' : null}
 															${winningOp ? 'winningOp' : null}`}>
 															{this.state.squares ? this.state.squares[num].name : null}
 														</div>
@@ -478,6 +501,16 @@ class Squares extends Component {
 							Patriots TD / PAT no good
 						</div>
 					</div>
+
+					<div className="flex">
+						<div className="patsTdGoForTwo colorBox">
+						<div className="roundBox"></div>
+						</div>
+						<div className="codeText">
+							Patriots TD / Go for 2 points
+						</div>
+					</div>
+
 				</div>
 
 				<div className="ramSection">
@@ -522,6 +555,15 @@ class Squares extends Component {
 						</div>
 						<div className="codeText">
 							Ram TD / PAT no good
+						</div>
+					</div>
+
+						<div className="flex">
+						<div className="ramsTdGoForTwo colorBox">
+						<div className="roundBox"></div>
+						</div>
+						<div className="codeText">
+							Ram TD / Go for 2 points
 						</div>
 					</div>
 

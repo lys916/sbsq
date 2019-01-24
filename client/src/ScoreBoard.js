@@ -60,19 +60,19 @@ const styles = {
   },
   time: {
       background: '#0c275b',
-      fontSize: 14,
+      fontSize: '3vw',
       width: '20%',
       paddingTop: 5
   },
   road: {
     background: '#002244',
     width: '40%',
-    fontSize: 20,
+    fontSize: '4.5vw',
     padding: '2px 0px'
   },
   home: {
     background: '#0f2D72',
-    fontSize: 20,
+    fontSize: '4.5vw',
     width: '40%',
     padding: '2px 0px'
   },

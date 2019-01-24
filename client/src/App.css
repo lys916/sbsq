@@ -71,7 +71,7 @@
   width: 7.5vw;
   height: 7.5vw;
   border: 1px solid #999999;
-  background: #00ffd5;
+  background: #00f7ff;
   border-radius: 100px;
 
 }
@@ -83,7 +83,7 @@
   width: 7.5vw;
   height: 7.5vw;
   border: 1px solid #999999;
-  background: #23a7ff;
+  background: #238aff;;
   border-radius: 100px;
 
 }
@@ -111,6 +111,17 @@
   border-radius: 100px;
 
 }
+.ramsTdGoForTwoOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: rgb(131, 131, 131);
+  border-radius: 100px;
+
+}
 /* PATRIOT */
 .patsScoreTdOp {
   box-sizing: border-box;
@@ -119,7 +130,7 @@
   width: 7.5vw;
   height: 7.5vw;
   border: 1px solid #999999;
-  background: #e5ff00;
+  background: #fbff00;
   border-radius: 100px;
 
 }
@@ -131,7 +142,7 @@
   width: 7.5vw;
   height: 7.5vw;
   border: 1px solid #999999;
-  background: rgb(253, 194, 0);
+  background: rgb(253, 152, 0);
   border-radius: 100px;
 
 }
@@ -160,6 +171,18 @@
 
 }
 
+.patsTdGoForTwoOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: rgb(166, 255, 0);
+  border-radius: 100px;
+
+}
+
 /* winning */
 
 
@@ -172,11 +195,11 @@
 }
 
 .ramsScoreTd {
-  background: #00ffd5;
+  background: #00f7ff;
 }
 
 .ramsScoreFg {
-  background: #23a7ff;
+  background: #238aff;
 }
 
 .ramsScoreSafety {
@@ -186,13 +209,16 @@
 .ramsXpNoGood {
   background: #a659ff;
 }
+.ramsTdGoForTwo {
+  background: rgb(131, 131, 131);
+}
 /* PATRIOT */
 .patsScoreTd {
-  background: #e5ff00;
+  background: #fbff00;
 }
 
 .patsScoreFg {
-  background: rgb(253, 194, 0);
+  background: rgb(253, 152, 0);
 }
 
 .patsScoreSafety {
@@ -201,6 +227,10 @@
 
 .patsXpNoGood {
   background: rgb(255, 51, 211);
+}
+
+.patsTdGoForTwo {
+  background: rgb(166, 255, 0);
 }
 
 
@@ -229,7 +259,7 @@
   padding: 10px 0px;
 }
 .codeText {
-  font-size: 12px;
+  font-size: 3vw;
   padding-left: 5px;
   padding-top: 1px;
 }
