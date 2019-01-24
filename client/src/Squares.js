@@ -191,6 +191,7 @@ class Squares extends Component {
     const user = this.state.user;
 		if(!user){
       this.props.history.push('/signup');
+			return null;
     }
 		let picksMade = 0;
 		if(this.state.squares){
