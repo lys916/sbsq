@@ -6,7 +6,7 @@ const userRouter = express.Router();
 
 userRouter.post('/signup', function(req, res){
 	const { initials, password, name } = req.body;
-	console.log('body..', req.body);
+	console.log('user signing up', req.body);
 	User.find({initials}).then(userFound=>{
 		console.log('user found', userFound);
 		if(userFound.length > 0){

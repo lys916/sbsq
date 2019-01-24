@@ -15,11 +15,13 @@ class Login extends Component {
   }
 
     handleLogin = ()=>{
+      alert('logging in');
   
       axios.post('http://localhost:5000/user/login', this.state).then(res=>{
       if(res.data.errorMessage){
         alert('wrong pwd');
       }else{
+        alert("You've loggest in successfully");
         localStorage.setItem('user', JSON.stringify(res.data));
         const user = JSON.parse(localStorage.getItem('user'));
         if(!user){
