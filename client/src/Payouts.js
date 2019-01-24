@@ -147,6 +147,8 @@ class Payouts extends Component {
             
           </table>
         </div>
+        {/* space for scrolling to the way down */}
+        <div style={{height: 70}}></div>
       </div>
     );
   }

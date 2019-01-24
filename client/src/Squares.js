@@ -211,7 +211,9 @@ class Squares extends Component {
     return (
 			<div>
 			<div style={styles.username}>
-				<div>Hello, {user.name}</div>
+
+				<div>Hello, {user.name} <span><img style={styles.update} src={'/signout.png'} onClick={this.refreshUser}/></span></div>
+
 				<div style={styles.availablePicks}>Your squares: {picksMade} / {user.availablePicks} <span><img style={styles.update} src={'/update.png'} onClick={this.refreshUser}/></span></div>
 			</div>
 			<ScoreBoard score={this.state.score} time={this.state.time}/>
