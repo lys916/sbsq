@@ -12,9 +12,15 @@ class Signup extends Component {
   }
 
   handleOnChange = (event)=>{
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    if(event.target.name === 'initials'){
+      this.setState({
+        [event.target.name]: event.target.value.toUpperCase()
+      });
+    }else{
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+    }
   }
 
   handleSignup = ()=>{

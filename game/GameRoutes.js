@@ -64,7 +64,7 @@ gameRouter.post('/changeTeamNum', function(req, res){
   const key = team + '.' + index;
   Game.findByIdAndUpdate('5c47991c8b96ef4ef44d6a94', {$set: {[key]: num}}, {'new': true}).then(updated=>{
 
-    console.log('updated', updated);
+    console.log('updated team number');
 
   });
 });

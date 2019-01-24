@@ -84,6 +84,58 @@
   background: rgb(255, 51, 211);
 }
 
+/* Opotsite */
+.winningOp {
+  background: rgb(21, 255, 0);
+  border-radius: 100px;
+}
+.ramsScoreTdOp {
+  background: #00ffd5;
+  border-radius: 100px;
+
+}
+
+.ramsScoreFgOp {
+  background: #23a7ff;
+  border-radius: 100px;
+
+}
+
+.ramsScoreSafetyOp {
+  background: #686aff;
+  border-radius: 100px;
+
+}
+
+.ramsXpNoGoodOp {
+  background: #a659ff;
+  border-radius: 100px;
+
+}
+/* PATRIOT */
+.patsScoreTdOp {
+  background: #e5ff00;
+  border-radius: 100px;
+
+}
+
+.patsScoreFgOp {
+  background: rgb(253, 194, 0);
+  border-radius: 100px;
+
+}
+
+.patsScoreSafetyOp {
+  background: #ff4e48;
+  border-radius: 100px;
+
+}
+
+.patsXpNoGoodOp {
+  background: rgb(255, 51, 211);
+  border-radius: 100px;
+
+}
 
 .flex {
   display: flex;
@@ -114,6 +166,31 @@
 
 .padTopBottomTen {
   padding: 10px 0px;
+}
+
+/* PAYOUTS */
+table {
+  width: 100%;
+}
+
+table, td {
+  border: 1px solid #dedede;
+
+}
+.payouts {
+  font-weight: 'bold';
+}
+.square {
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+}
+
+.round {
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  border-radius: 100px;
 }
 
 

@@ -2,14 +2,36 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import IconTabs from './Tabs';
 
+const Nums = [0, 1, 2, 3, 4, 5, 6, 7 , 8, 9]; 
+
 const user = null;
-class Leaders extends Component {
+class Admin extends Component {
   state = {
     patsScore: '',
     ramsScore: '',
     time: '',
     addSq: '',
-    initials: ''
+    initials: '',
+    ramsNum: [],
+    patsNum: [],
+    time: '', 
+    score: ''
+  }
+
+  componentDidMount(){
+   
+    axios.get('/game').then(res=>{
+     
+      const {squares, ramsNum, patsNum, time, score} = res.data;
+      this.setState({
+        ramsNum,
+        patsNum,
+				score,
+				time,
+        patsScore: score[0],
+        ramsScore: score[1]
+      })
+    });
   }
 
   handleOnChange = (event)=>{
@@ -24,7 +46,7 @@ class Leaders extends Component {
        const scores = [patsScore, ramsScore];
 
     axios.post('/game/updateScores', {score: scores, time: this.state.time}).then(res=>{
-      console.log('updated', res.data);
+      alert(res.data);
     });
     }
    
@@ -41,6 +63,13 @@ class Leaders extends Component {
    
   }
 
+  changeTeamNum = (e, team, index)=>{
+    console.log(e.target.value, team);
+    axios.post('http://localhost:5000/game/changeTeamNum', {num: e.target.value, team, index}).then(res=>{
+      alert(res.data);
+    });
+  }
+
   handleSignout = ()=>{
     localStorage.removeItem('user');
     this.props.history.push('/login');
@@ -53,8 +82,7 @@ class Leaders extends Component {
     }
     return (
       <div style={styles.root}>
-        {/* ADMIN SECTION  */}
-        {user.admin ? 
+
         <div style={styles.admin}>
           {/* UPATE SCORES */}
           <div className="borderGray pad5">
@@ -84,11 +112,55 @@ class Leaders extends Component {
             <button style={styles.button} onClick={this.handleAddSq}>Add Squares</button>
           </div>
 
-        </div> : null}
-        {/* END ADMIN SECTION */}
+        </div>
 
-        <div onClick={this.handleSignout}>Sign out</div>
-        Leader board
+         <div>Patriots Side</div>
+        {
+          this.state.patsNum.map((num, index)=>{
+            return(
+
+              <select 
+                onChange={(e)=>{this.changeTeamNum(e, 'patsNum', index)}}
+                style={styles.select}
+                >
+                
+                <option value={num}>{num}</option>
+                {num !== null || num !== '' ? <option value=""></option> : null}
+                {this.state.patsNum.map((num, index)=>{
+                  return(
+                    <option value={index}>{index}</option>
+                  )
+                })}
+            </select>
+
+              // <input style={styles.inputs} name="num" placeholder={`${num}`} value={this.state.num} onChange={(e)=>{this.handleChangeNum(e, 'patsNum', num)}}/>
+            )
+          })
+        }
+        <div>Rams Side</div>
+        {
+          this.state.ramsNum.map((num, index)=>{
+            return(
+
+              <select 
+                onChange={(e)=>{this.changeTeamNum(e, 'ramsNum', index)}}
+                style={styles.select}
+                >
+                
+                <option value={num}>{num}</option>
+                {num !== null || num !== '' ? <option value=""></option> : null}
+                {this.state.ramsNum.map((num, index)=>{
+                  return(
+                    <option value={index}>{index}</option>
+                  )
+                })}
+            </select>
+
+              // <input style={styles.inputs} name="num" placeholder={`${num}`} value={this.state.num} onChange={(e)=>{this.handleChangeNum(e, 'patsNum', num)}}/>
+            )
+          })
+        }
+        
       </div>
     );
   }
@@ -100,10 +172,19 @@ const styles = {
     padding: 5,
     width: '60%'
   },
+  select: {
+    fontSize: 22
+  },
   button: {
     fontSize: 20,
     padding: '5px 10px'
   }
 }
 
-export default Leaders;
+export default Admin;
+
+
+
+
+
+   

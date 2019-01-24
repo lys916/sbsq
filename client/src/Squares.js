@@ -180,12 +180,12 @@ class Squares extends Component {
 		
   }
 
-  changeTeamNum = (e, team, index)=>{
-    console.log(e.target.value, team);
-    axios.post('http://localhost:5000/game/changeTeamNum', {num: e.target.value, team, index}).then(res=>{
-      this.setState({[team]: res.data});
-    });
-  }
+  // changeTeamNum = (e, team, index)=>{
+  //   console.log(e.target.value, team);
+  //   axios.post('http://localhost:5000/game/changeTeamNum', {num: e.target.value, team, index}).then(res=>{
+  //     this.setState({[team]: res.data});
+  //   });
+  // }
   render() {
     const user = this.state.user;
 		if(!user){
@@ -234,21 +234,22 @@ class Squares extends Component {
               {this.state.patsNum.map((num, index)=>{
                 return(
                   <div style={styles.patsNum}>
+									<div style={styles.cell}>{num === null || num === '' ? '?' : num}</div>
 										{/* if user is admin then show num with dropdown */}
-										{user.admin ?
+										{/* {user.admin ?
 
 											<select 
 												onChange={(e)=>{this.changeTeamNum(e, 'patsNum', index)}}>
-												{/* first option */}
+											
 												<option value={num}>{num}</option>
 												{num !== null || num !== '' ? <option value=""></option> : null}
 												{this.state.patsNum.map((num, index)=>{
 													return(
-														// the rest of options
+													
 														<option value={index}>{index}</option>
 													)
 												})}
-										</select> : <div style={styles.cell}>{num === null || num === '' ? '?' : num}</div> }
+										</select> : <div style={styles.cell}>{num === null || num === '' ? '?' : num}</div> } */}
                   </div>
                 )
               })}
@@ -259,20 +260,21 @@ class Squares extends Component {
                 {this.state.ramsNum.map((num, index)=>{
                 return(
                   <div style={styles.ramsNum} onClick={()=>{}}>
-                    {user.admin ?
+									<div style={styles.cell}>{num === null || num === '' ? '?' : num}</div>
+                    {/* {user.admin ?
 
 											<select 
 												onChange={(e)=>{this.changeTeamNum(e, 'ramsNum', index)}}>
-												{/* first option */}
+											
 												<option value={num}>{num}</option>
 												{num !== null || num !== '' ? <option value=""></option> : null}
 												{this.state.ramsNum.map((num, index)=>{
 													return(
-														// the rest of options
+														
 														<option value={index}>{index}</option>
 													)
 												})}
-										</select> : <div style={styles.cell}>{num === null || num === '' ? '?' : num}</div> }
+										</select> : <div style={styles.cell}>{num === null || num === '' ? '?' : num}</div> } */}
                   </div>
                 )
               })}
@@ -303,6 +305,7 @@ class Squares extends Component {
 												const patsFgLastDigit = patsFgString[patsFgString.length- 1];
 												const patsSafetyLastDigit = patsSafetyString[patsSafetyString.length- 1];
 												const patsNoXpLastDigit = patsNoXpString[patsNoXpString.length- 1];
+
 												//Rams num and score calculations ********
 												const ramsScore = this.state.score[1];
 												const ramScoreLen = ramsScore.length;
@@ -318,41 +321,78 @@ class Squares extends Component {
 
 												//get winning cell
 												const winning = ramsNum === ramsScoreLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
+
+												const winningOp = ramsNum === patsScoreLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+
 												//rams next score
-												const ramsNeedTd = ramsNum === ramsTdLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
+												const ramsNeedTdOp = ramsNum === patsTdLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+
+												 const ramsNeedTd = ramsNum === ramsTdLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
+
+												 //
 
 												const ramsNeedFg = ramsNum === ramsFgLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
 
+												const ramsNeedFgOp = ramsNum === patsFgLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												//
+
 												const ramsNeedSafety = ramsNum === ramsSafetyLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
 
+												const ramsNeedSafetyOp = ramsNum === patsSafetyLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												//
+
 												const ramsXpNoGood = ramsNum === ramsNoXpLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
+
+												const ramsXpNoGoodOp = ramsNum === patsNoXpLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												//
 
 												//pats next score
 												const patsNeedTd = patsNum === patsTdLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
+												const patsNeedTdOp = patsNum === ramsTdLastDigit && ramsNum === patsScoreLastDigit && this.state.squares;
+												//
+
 												const patsNeedFg = patsNum === patsFgLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
+
+												const patsNeedFgOp = patsNum === ramsFgLastDigit && ramsNum === patsScoreLastDigit && this.state.squares;
+												//
 
 												const patsNeedSafety = patsNum === patsSafetyLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
+												const patsNeedSafetyOp = patsNum === ramsSafetyLastDigit && ramsNum === patsScoreLastDigit && this.state.squares
+												//
+
 												const patsXpNoGood = patsNum === patsNoXpLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
+												const patsXpNoGoodOp = patsNum === ramsNoXpLastDigit && ramsNum === patsScoreLastDigit && this.state.squares;
+												//
 
-												const name = this.state.squares ? this.state.squares[num].name : null;
+
+												// const name = this.state.squares ? this.state.squares[num].name : null;
 												
 										
                         return(
                           // each cell
                           <div className={`col 
-													 ${user.initials === name ? 'yourSquare' : null} 
+													  
 														${winning ? 'winning' : null} 
-														${ramsNeedTd ? 'ramsScoreTd' : null} 
+														${winningOp ? 'winningOp' : null} 
+														${ramsNeedTd ? 'ramsScoreTd' : null}
+														${ramsNeedTdOp ? 'ramsScoreTdOp' : null}
 														${ramsNeedFg ? 'ramsScoreFg' : null} 
+														${ramsNeedFgOp ? 'ramsScoreFgOp' : null} 
 														${ramsXpNoGood ? 'ramsXpNoGood' : null} 
+														${ramsXpNoGoodOp ? 'ramsXpNoGoodOp' : null} 
 														${ramsNeedSafety ? 'ramsScoreSafety' : null}
+														${ramsNeedSafetyOp ? 'ramsScoreSafetyOp' : null}
 														${patsNeedTd ? 'patsScoreTd' : null} 
+														${patsNeedTdOp ? 'patsScoreTdOp' : null} 
+														${patsNeedFgOp ? 'patsScoreFgOp' : null} 
 														${patsNeedFg ? 'patsScoreFg' : null} 
 														${patsXpNoGood ? 'patsXpNoGood' : null} 
+														${patsXpNoGoodOp ? 'patsXpNoGoodOp' : null} 
 														${patsNeedSafety ? 'patsScoreSafety' : null}
+														${patsNeedSafetyOp ? 'patsScoreSafetyOp' : null}
 														`}
 														onClick={()=>{this.pickSq(num, user)}}>
                           	{this.state.squares ? this.state.squares[num].name : null}
@@ -375,7 +415,7 @@ class Squares extends Component {
 					<div style={{display: 'flex', paddingTop: '5px'}}>
 					<div className="winning colorBox"></div>
 					<div className="codeText">
-						Currently winning.
+						Currently winning
 					</div>
 				</div>
 				
@@ -384,7 +424,7 @@ class Squares extends Component {
 						<div className="patsScoreTd colorBox">
 						</div>
 						<div className="codeText">
-							If Patriots score a TD.
+							If Patriots score a TD
 						</div>
 					</div>
 
@@ -392,7 +432,7 @@ class Squares extends Component {
 						<div className="patsScoreFg colorBox">
 						</div>
 						<div className="codeText">
-							If Patriots score a FG.
+							If Patriots score a FG
 						</div>
 					</div>
 
@@ -400,7 +440,7 @@ class Squares extends Component {
 						<div className="patsScoreSafety colorBox">
 						</div>
 						<div className="codeText">
-							If Patriots score a Safety.
+							If Patriots score a Safety
 						</div>
 					</div>
 					<div className="flex">
@@ -415,9 +455,9 @@ class Squares extends Component {
 				<div className="ramSection">
 
 					<div style={{display: 'flex', paddingTop: 5}}>
-						<div className="yourSquare colorBox"></div>
+						<div className="winningOp colorBox"></div>
 						<div className="codeText">
-							Your squares.
+							Currently winning oposite
 						</div>
 					</div>
 
@@ -425,7 +465,7 @@ class Squares extends Component {
 						<div className="ramsScoreTd colorBox">
 						</div>
 						<div className="codeText">
-							If Rams score a TD.
+							If Rams score a TD
 						</div>
 					</div>
 
@@ -433,7 +473,7 @@ class Squares extends Component {
 						<div className="ramsScoreFg colorBox">
 						</div>
 						<div className="codeText">
-							If Rams score a FG.
+							If Rams score a FG
 						</div>
 					</div>
 
@@ -441,7 +481,7 @@ class Squares extends Component {
 						<div className="ramsScoreSafety colorBox">
 						</div>
 						<div className="codeText">
-							If Rams score a Safety.
+							If Rams score a Safety
 						</div>
 					</div>
 

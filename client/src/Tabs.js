@@ -25,8 +25,11 @@ class IconTabs extends React.Component {
                 this.props.history.push('/squares');
             });
 		}
-		if(path === '/leaders'){
+		if(path === '/payouts'){
 			this.setState({value: 1});
+		}
+		if(path === '/admin'){
+			this.setState({value: 2});
 		}
 		// if(path === '/drinks'){
 		// 	this.setState({value: 2});
@@ -43,7 +46,10 @@ class IconTabs extends React.Component {
 			history.push('/squares');
 		}
 		if (value === 1) {
-			history.push('/leaders');
+			history.push('/payouts');
+		}
+		if (value === 2) {
+			history.push('/admin');
 		}
 		this.setState({ value });
 	};
@@ -67,7 +73,9 @@ class IconTabs extends React.Component {
 					textColor="primary"
 				>
 					<Tab label="Squares" />
-					<Tab label="Leaders" />
+					<Tab label="Payouts" />
+					{user.admin ? <Tab label="Admin" /> : null}
+					
 				</Tabs>
 			</Paper>
 			
