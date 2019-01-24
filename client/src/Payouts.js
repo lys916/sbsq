@@ -45,10 +45,7 @@ class Payouts extends Component {
    
   // }
 
-  // handleSignout = ()=>{
-  //   localStorage.removeItem('user');
-  //   this.props.history.push('/login');
-  // }
+
 
   render() {
     console.log('all users', this.state.users);

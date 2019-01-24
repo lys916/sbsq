@@ -120,6 +120,11 @@ class Squares extends Component {
     });
   }
 
+  handleSignout = ()=>{
+    localStorage.removeItem('user');
+    this.props.history.push('/login');
+  }
+
 	refreshUser = ()=>{
 		console.log('user id', this.state.user._id);
 		axios.post('/user', {id: this.state.user._id}).then(res=>{
@@ -212,7 +217,7 @@ class Squares extends Component {
 			<div>
 			<div style={styles.username}>
 
-				<div>Hello, {user.name} <span><img style={styles.update} src={'/signout.png'} onClick={this.refreshUser}/></span></div>
+				<div>Hello, {user.name} <span><img style={styles.update} src={'/signout.png'} onClick={this.handleSignout}/></span></div>
 
 				<div style={styles.availablePicks}>Your squares: {picksMade} / {user.availablePicks} <span><img style={styles.update} src={'/update.png'} onClick={this.refreshUser}/></span></div>
 			</div>
