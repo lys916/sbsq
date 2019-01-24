@@ -13,14 +13,13 @@ const styles = {
   root: {
 		display: 'flex', 
 		justifyContent: 'center', 
-		marginTop: 20,
+		marginTop: 10,
 	},
 	board: {
 		display: 'flex', 
 		justifyContent: 'center',
 		borderRight: '3px solid #0f2D72',
-		borderBottom: '3px solid #002244'
-
+		borderBottom: '3px solid #002244',
 	},
   // rightSection: {
   //   border: '1px solid blue', 
@@ -373,7 +372,7 @@ class Squares extends Component {
 
 				<div className="patsSection">
 
-					<div style={{display: 'flex', padding: '10px 0px'}}>
+					<div style={{display: 'flex', paddingTop: '5px'}}>
 					<div className="winning colorBox"></div>
 					<div className="codeText">
 						Currently winning.
@@ -415,7 +414,7 @@ class Squares extends Component {
 
 				<div className="ramSection">
 
-					<div style={{display: 'flex', padding: '10px 0px'}}>
+					<div style={{display: 'flex', paddingTop: 5}}>
 						<div className="yourSquare colorBox"></div>
 						<div className="codeText">
 							Your squares.
@@ -456,6 +455,7 @@ class Squares extends Component {
 
 				</div>
 			</div>
+			<div style={{height: 50}}></div>
 			</div>
     );
   }

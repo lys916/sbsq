@@ -64,7 +64,7 @@ class Signup extends Component {
       });
     }
     else{
-      axios.post('http://localhost:5000/user/signup', this.state).then(res=>{
+      axios.post('/user/signup', this.state).then(res=>{
         localStorage.setItem('user', JSON.stringify(res.data));
         const user = JSON.parse(localStorage.getItem('user'));
 

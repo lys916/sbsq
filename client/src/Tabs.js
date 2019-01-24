@@ -87,9 +87,8 @@ const styles = {
 	},
 	tabs: {
 		width: '100%',
-		fontSize: 13,
         position: 'fixed',
-        bottom: 0
+        bottom: 0,
 	}
 };
 
