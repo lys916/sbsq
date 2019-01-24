@@ -23,7 +23,7 @@ class Leaders extends Component {
     if(time !== '' && patsScore !== '' && ramsScore !== ''){
        const scores = [patsScore, ramsScore];
 
-    axios.post('http://localhost:5000/game/updateScores', {score: scores, time: this.state.time}).then(res=>{
+    axios.post('/game/updateScores', {score: scores, time: this.state.time}).then(res=>{
       console.log('updated', res.data);
     });
     }
@@ -34,7 +34,7 @@ class Leaders extends Component {
     const {addSq, initials} = this.state;
     if(addSq !== ''){
       const user = {initials, addSq}
-    axios.post('http://localhost:5000/user/addSquare', user).then(res=>{
+    axios.post('/user/addSquare', user).then(res=>{
       alert(res.data);
     });
     }

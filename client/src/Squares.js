@@ -102,7 +102,7 @@ class Squares extends Component {
 
   componentDidMount(){
    
-    axios.get('http://localhost:5000/game').then(res=>{
+    axios.get('/game').then(res=>{
      
       const {squares, ramsNum, patsNum, teams, time, score} = res.data;
       this.setState({
@@ -118,7 +118,7 @@ class Squares extends Component {
 
 	refreshUser = ()=>{
 		console.log('user id', this.state.user._id);
-		axios.post('http://localhost:5000/user', {id: this.state.user._id}).then(res=>{
+		axios.post('/user', {id: this.state.user._id}).then(res=>{
 			localStorage.setItem('user', JSON.stringify(res.data));
 			this.setState({user: res.data});
 		});
@@ -132,7 +132,7 @@ class Squares extends Component {
 		const sqName = this.state.squares[sq].name;
 		if(sqName === user.initials){
 			// remove name
-				axios.post('http://localhost:5000/game/pickSq', {sq, user}).then(res=>{
+				axios.post('/game/pickSq', {sq, user}).then(res=>{
 		
 				this.setState({squares: res.data.squares});
 	
@@ -156,7 +156,7 @@ class Squares extends Component {
 
 			// if user still have available square
 			if(picksMade < user.availablePicks){
-				axios.post('http://localhost:5000/game/pickSq', {sq, user}).then(res=>{
+				axios.post('/game/pickSq', {sq, user}).then(res=>{
 		
 					if(res.data === 'taken'){
 						alert('square is taken');
