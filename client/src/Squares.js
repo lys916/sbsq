@@ -202,6 +202,7 @@ class Squares extends Component {
   // }
   render() {
     const user = this.state.user;
+		console.log('USER', user);
 		if(!user){
       this.props.history.push('/signup');
 			return null;
@@ -241,7 +242,7 @@ class Squares extends Component {
           <div style={{textAlign: 'center'}}>S</div>
         </div>
         <div style={styles.rightSection}>
-          <div style={styles.topName}>RAM</div>
+          <div style={styles.topName}>RAMS</div>
           {/* board */}
           <div style={styles.board}>
             <div style={styles.patsNumWrap}>

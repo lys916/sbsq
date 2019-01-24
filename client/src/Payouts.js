@@ -61,9 +61,9 @@ class Payouts extends Component {
         <div style={styles.payouts}>
           <table>
             <tr>
-              <th>Quarters</th>
-              <th>Payouts</th> 
-              <th>Winners</th>
+              <th>Quarter</th>
+              <th>Payout</th> 
+              <th>Winner</th>
             </tr>
             <tr>
               <td>First</td>
@@ -94,9 +94,9 @@ class Payouts extends Component {
         <div style={styles.payouts}>
           <table>
             <tr>
-              <th>Quarters</th>
-              <th>Payouts</th> 
-              <th>Winners</th>
+              <th>Quarter</th>
+              <th>Payout</th> 
+              <th>Winner</th>
             </tr>
             <tr>
               <td>First</td>
@@ -128,8 +128,8 @@ class Payouts extends Component {
             <tr>
               <th>Name</th>
               <th>Initials</th> 
-              <th>Squares</th>
-              <th>Won</th>
+              <th>Square</th>
+              <th>Paid</th>
             </tr>
             {this.state.users.map(user=>{
               return(
@@ -137,7 +137,7 @@ class Payouts extends Component {
                   <td>{user.name}</td>
                   <td>{user.initials}</td> 
                   <td>{user.availablePicks}</td>
-                  <td>$0</td>
+                  <td>${user.availablePicks * 10}</td>
                 </tr>
               )
             })}
