@@ -56,6 +56,7 @@ userRouter.post('/', function(req, res){
 });
 
 userRouter.post('/login', function(req, res){
+	console.log('user logging in server', req.body);
 	const { initials, password } = req.body;
 	User.findOne({ initials }).then(user => {
 		if(!user){
