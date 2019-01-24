@@ -46,6 +46,114 @@
 .yourSquare {
   background: rgb(172, 172, 172);
 }
+/* Opotsite */
+.winningOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: rgb(21, 255, 0);
+  border-radius: 100px;
+}
+.ramsScoreTdOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: #00ffd5;
+  border-radius: 100px;
+
+}
+
+.ramsScoreFgOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: #23a7ff;
+  border-radius: 100px;
+
+}
+
+.ramsScoreSafetyOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: #686aff;
+  border-radius: 100px;
+
+}
+
+.ramsXpNoGoodOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: #a659ff;
+  border-radius: 100px;
+
+}
+/* PATRIOT */
+.patsScoreTdOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: #e5ff00;
+  border-radius: 100px;
+
+}
+
+.patsScoreFgOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: rgb(253, 194, 0);
+  border-radius: 100px;
+
+}
+
+.patsScoreSafetyOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: #ff4e48;
+  border-radius: 100px;
+
+}
+
+.patsXpNoGoodOp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 7.5vw;
+  height: 7.5vw;
+  border: 1px solid #999999;
+  background: rgb(255, 51, 211);
+  border-radius: 100px;
+
+}
+
+/* winning */
 
 
 .winning {
@@ -84,58 +192,7 @@
   background: rgb(255, 51, 211);
 }
 
-/* Opotsite */
-.winningOp {
-  background: rgb(21, 255, 0);
-  border-radius: 100px;
-}
-.ramsScoreTdOp {
-  background: #00ffd5;
-  border-radius: 100px;
 
-}
-
-.ramsScoreFgOp {
-  background: #23a7ff;
-  border-radius: 100px;
-
-}
-
-.ramsScoreSafetyOp {
-  background: #686aff;
-  border-radius: 100px;
-
-}
-
-.ramsXpNoGoodOp {
-  background: #a659ff;
-  border-radius: 100px;
-
-}
-/* PATRIOT */
-.patsScoreTdOp {
-  background: #e5ff00;
-  border-radius: 100px;
-
-}
-
-.patsScoreFgOp {
-  background: rgb(253, 194, 0);
-  border-radius: 100px;
-
-}
-
-.patsScoreSafetyOp {
-  background: #ff4e48;
-  border-radius: 100px;
-
-}
-
-.patsXpNoGoodOp {
-  background: rgb(255, 51, 211);
-  border-radius: 100px;
-
-}
 
 .flex {
   display: flex;
@@ -145,6 +202,17 @@
   width: 4.2vw;
   height: 4.2vw;
   margin: 1px;
+  border: 1px solid #999900;
+
+}
+.roundBox {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 4.2vw;
+  height: 4.2vw;
+  border: 1px solid #999999;
+  border-radius: 100px;
 }
 .winningBox {
   padding: 10px 0px;
@@ -191,6 +259,10 @@ table, td {
   height: 22px;
   margin-right: 10px;
   border-radius: 100px;
+}
+
+.test {
+  
 }
 
 

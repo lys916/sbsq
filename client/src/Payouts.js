@@ -5,48 +5,53 @@ import IconTabs from './Tabs';
 const user = null;
 class Payouts extends Component {
   state = {
-    patsScore: '',
-    ramsScore: '',
-    time: '',
-    addSq: '',
-    initials: ''
+    users: []
   }
 
-  handleOnChange = (event)=>{
-    this.setState({
-      [event.target.name]: event.target.value
+   componentDidMount(){
+    axios.get('/user').then(res=>{
+      this.setState({
+        users: res.data
+      })
     });
   }
 
-  handleUpdateScore = ()=>{
-    const {time, patsScore, ramsScore} = this.state;
-    if(time !== '' && patsScore !== '' && ramsScore !== ''){
-       const scores = [patsScore, ramsScore];
+  // handleOnChange = (event)=>{
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   });
+  // }
 
-    axios.post('/game/updateScores', {score: scores, time: this.state.time}).then(res=>{
-      console.log('updated', res.data);
-    });
-    }
+  // handleUpdateScore = ()=>{
+  //   const {time, patsScore, ramsScore} = this.state;
+  //   if(time !== '' && patsScore !== '' && ramsScore !== ''){
+  //      const scores = [patsScore, ramsScore];
+
+  //   axios.post('/game/updateScores', {score: scores, time: this.state.time}).then(res=>{
+  //     console.log('updated', res.data);
+  //   });
+  //   }
    
-  }
+  // }
 
-    handleAddSq = ()=>{
-    const {addSq, initials} = this.state;
-    if(addSq !== ''){
-      const user = {initials, addSq}
-    axios.post('/user/addSquare', user).then(res=>{
-      alert(res.data);
-    });
-    }
+  //   handleAddSq = ()=>{
+  //   const {addSq, initials} = this.state;
+  //   if(addSq !== ''){
+  //     const user = {initials, addSq}
+  //   axios.post('/user/addSquare', user).then(res=>{
+  //     alert(res.data);
+  //   });
+  //   }
    
-  }
+  // }
 
-  handleSignout = ()=>{
-    localStorage.removeItem('user');
-    this.props.history.push('/login');
-  }
+  // handleSignout = ()=>{
+  //   localStorage.removeItem('user');
+  //   this.props.history.push('/login');
+  // }
 
   render() {
+    console.log('all users', this.state.users);
     const user = JSON.parse(localStorage.getItem('user'));
     if(!user){
       this.props.history.push('/signup');
@@ -129,12 +134,17 @@ class Payouts extends Component {
               <th>Squares</th>
               <th>Won</th>
             </tr>
-            <tr>
-              <td>Lo Saephan</td>
-              <td>LYS</td> 
-              <td>7</td>
-              <td>$0</td>
-            </tr>
+            {this.state.users.map(user=>{
+              return(
+                <tr>
+                  <td>{user.name}</td>
+                  <td>{user.initials}</td> 
+                  <td>{user.availablePicks}</td>
+                  <td>$0</td>
+                </tr>
+              )
+            })}
+            
           </table>
         </div>
       </div>

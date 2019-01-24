@@ -56,6 +56,12 @@ userRouter.post('/', function(req, res){
 	});
 });
 
+userRouter.get('/', function(req, res){
+	User.find().then(user => {
+		res.json(user);
+	});
+});
+
 userRouter.post('/login', function(req, res){
 	console.log('user logging in server', req.body);
 	logger.info('logger, user login xxxxxxxxxxxxxxx XXXXXXXXXXXXXXXXXXX')

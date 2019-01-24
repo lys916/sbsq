@@ -36,13 +36,18 @@ const styles = {
   leftName: {background: 'gray', background: '#002244', color: 'white'},
   ramsNumWrap: {
 		display: 'flex', 
-		height: '7.5vw', 
-		background: '#dedede'
+		background: '#dedede',
+		// justifyContent:'center',
+    // alignContent:'center',
+    // flexDirection:'row', /* column | row */
 	},
   patsNumWrap: {background: '#dedede', borderRight: '1px solid #bbbbbb'},
 
-  ramsNum: {width: '7.5vw', height: '7.5vw', background: '#dedede', borderRight: '1px solid #bbbbbb', borderBottom: '1px solid #bbbbbb',
-	paddingTop: 2
+  ramsNum: {
+		width: '7.5vw', 
+		lineHeight: '7.5vw', 
+		background: '#dedede', 
+		borderRight: '1px solid #bbbbbb',
 	},
   patsNum: {
 		display: 'flex', 
@@ -325,7 +330,7 @@ class Squares extends Component {
 												const winningOp = ramsNum === patsScoreLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
 
 												//rams next score
-												const ramsNeedTdOp = ramsNum === patsTdLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												const ramsNeedTdOp = ramsNum === patsScoreLastDigit && patsNum === ramsTdLastDigit && this.state.squares;
 
 												 const ramsNeedTd = ramsNum === ramsTdLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
 
@@ -333,38 +338,38 @@ class Squares extends Component {
 
 												const ramsNeedFg = ramsNum === ramsFgLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
 
-												const ramsNeedFgOp = ramsNum === patsFgLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												const ramsNeedFgOp = ramsNum === patsScoreLastDigit && patsNum === ramsFgLastDigit && this.state.squares;
 												//
 
 												const ramsNeedSafety = ramsNum === ramsSafetyLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
 
-												const ramsNeedSafetyOp = ramsNum === patsSafetyLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												const ramsNeedSafetyOp = ramsNum === patsScoreLastDigit && patsNum === ramsSafetyLastDigit && this.state.squares;
 												//
 
 												const ramsXpNoGood = ramsNum === ramsNoXpLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
 
-												const ramsXpNoGoodOp = ramsNum === patsNoXpLastDigit && patsNum === ramsScoreLastDigit && this.state.squares;
+												const ramsXpNoGoodOp = ramsNum === patsScoreLastDigit && patsNum === ramsNoXpLastDigit && this.state.squares;
 												//
 
 												//pats next score
 												const patsNeedTd = patsNum === patsTdLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
-												const patsNeedTdOp = patsNum === ramsTdLastDigit && ramsNum === patsScoreLastDigit && this.state.squares;
+												const patsNeedTdOp = patsNum === ramsScoreLastDigit && ramsNum === patsTdLastDigit && this.state.squares;
 												//
 
 												const patsNeedFg = patsNum === patsFgLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
-												const patsNeedFgOp = patsNum === ramsFgLastDigit && ramsNum === patsScoreLastDigit && this.state.squares;
+												const patsNeedFgOp = patsNum === ramsScoreLastDigit && ramsNum === patsFgLastDigit && this.state.squares;
 												//
 
 												const patsNeedSafety = patsNum === patsSafetyLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
-												const patsNeedSafetyOp = patsNum === ramsSafetyLastDigit && ramsNum === patsScoreLastDigit && this.state.squares
+												const patsNeedSafetyOp = patsNum === ramsScoreLastDigit && ramsNum === patsSafetyLastDigit && this.state.squares
 												//
 
 												const patsXpNoGood = patsNum === patsNoXpLastDigit && ramsNum === ramsScoreLastDigit && this.state.squares;
 
-												const patsXpNoGoodOp = patsNum === ramsNoXpLastDigit && ramsNum === patsScoreLastDigit && this.state.squares;
+												const patsXpNoGoodOp = patsNum === ramsScoreLastDigit && ramsNum === patsNoXpLastDigit && this.state.squares;
 												//
 
 
@@ -376,26 +381,38 @@ class Squares extends Component {
                           <div className={`col 
 													  
 														${winning ? 'winning' : null} 
-														${winningOp ? 'winningOp' : null} 
+														 
 														${ramsNeedTd ? 'ramsScoreTd' : null}
-														${ramsNeedTdOp ? 'ramsScoreTdOp' : null}
+														 
 														${ramsNeedFg ? 'ramsScoreFg' : null} 
-														${ramsNeedFgOp ? 'ramsScoreFgOp' : null} 
+														 
 														${ramsXpNoGood ? 'ramsXpNoGood' : null} 
-														${ramsXpNoGoodOp ? 'ramsXpNoGoodOp' : null} 
+														
 														${ramsNeedSafety ? 'ramsScoreSafety' : null}
-														${ramsNeedSafetyOp ? 'ramsScoreSafetyOp' : null}
+													
 														${patsNeedTd ? 'patsScoreTd' : null} 
-														${patsNeedTdOp ? 'patsScoreTdOp' : null} 
-														${patsNeedFgOp ? 'patsScoreFgOp' : null} 
+													
 														${patsNeedFg ? 'patsScoreFg' : null} 
 														${patsXpNoGood ? 'patsXpNoGood' : null} 
-														${patsXpNoGoodOp ? 'patsXpNoGoodOp' : null} 
+														
 														${patsNeedSafety ? 'patsScoreSafety' : null}
-														${patsNeedSafetyOp ? 'patsScoreSafetyOp' : null}
+														
 														`}
 														onClick={()=>{this.pickSq(num, user)}}>
-                          	{this.state.squares ? this.state.squares[num].name : null}
+														<div className={`
+
+															${ramsNeedSafetyOp ? 'ramsScoreSafetyOp' : null}
+															${patsXpNoGoodOp ? 'patsXpNoGoodOp' : null} 
+														${patsNeedSafetyOp ? 'patsScoreSafetyOp' : null}
+															${patsNeedTdOp ? 'patsScoreTdOp' : null} 
+														${patsNeedFgOp ? 'patsScoreFgOp' : null} 
+															${ramsNeedTdOp ? 'ramsScoreTdOp' : null}
+															${ramsNeedFgOp ? 'ramsScoreFgOp' : null}
+															${ramsXpNoGoodOp ? 'ramsXpNoGoodOp' : null}
+															${winningOp ? 'winningOp' : null}`}>
+															{this.state.squares ? this.state.squares[num].name : null}
+														</div>
+                          	{/* {this.state.squares ? this.state.squares[num].name : null} */}
                           </div>
                         )
                       })}
@@ -422,6 +439,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="patsScoreTd colorBox">
+							<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							If Patriots score a TD
@@ -430,6 +448,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="patsScoreFg colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							If Patriots score a FG
@@ -438,6 +457,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="patsScoreSafety colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							If Patriots score a Safety
@@ -445,6 +465,7 @@ class Squares extends Component {
 					</div>
 					<div className="flex">
 						<div className="patsXpNoGood colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							Patriots TD / PAT no good
@@ -463,6 +484,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="ramsScoreTd colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							If Rams score a TD
@@ -471,6 +493,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="ramsScoreFg colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							If Rams score a FG
@@ -479,6 +502,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="ramsScoreSafety colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							If Rams score a Safety
@@ -487,6 +511,7 @@ class Squares extends Component {
 
 					<div className="flex">
 						<div className="ramsXpNoGood colorBox">
+						<div className="roundBox"></div>
 						</div>
 						<div className="codeText">
 							Ram TD / PAT no good
