@@ -41,7 +41,7 @@ class Login extends Component {
   render() {
     return (
       <div style={styles.root}>
-        <div>SUPER BOWL SQUARES</div>
+        <div style={{paddingTop: 20}}>SUPER BOWL SQUARES</div>
         <form style={styles.form}>
           <div style={styles.label}>Your Initials</div>
           
