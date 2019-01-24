@@ -7,6 +7,10 @@ const path = require('path');
 const pickRouter = require('./pick/PickRoutes');
 const userRouter = require('./user/UserRoutes');
 const gameRouter = require('./game/GameRoutes');
+
+const logger = require('heroku-logger')
+ 
+
 // const customFoodRouter = require('./customFood/CustomFoodRoutes');
 // const systemFoodRouter = require('./systemFood/SystemFoodRoutes');
 
@@ -43,6 +47,11 @@ server.use('/user', userRouter);
 server.use('/pick', pickRouter);
 server.use('/game', gameRouter);
 // server.use('/systemFood', systemFoodRouter);
+
+
+logger.info('Starting server', { port: 4000 })
+logger.error('Invalid `type` argument', { argument: 'type', value: 'nuber' })
+
 
 // serve static assets if we're in production
 if(process.env.NODE_ENV === 'production'){
