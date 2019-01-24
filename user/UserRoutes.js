@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./UserModel.js');
 const userRouter = express.Router();
+const logger = require('heroku-logger');
 // const bcrypt = require('bcrypt');
 // const jwt = require('jsonwebtoken');
 
