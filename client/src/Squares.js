@@ -194,12 +194,6 @@ class Squares extends Component {
 		
   }
 
-  // changeTeamNum = (e, team, index)=>{
-  //   console.log(e.target.value, team);
-  //   axios.post('http://localhost:5000/game/changeTeamNum', {num: e.target.value, team, index}).then(res=>{
-  //     this.setState({[team]: res.data});
-  //   });
-  // }
   render() {
     const user = this.state.user;
 		console.log('USER', user);

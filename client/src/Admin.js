@@ -65,7 +65,7 @@ class Admin extends Component {
 
   changeTeamNum = (e, team, index)=>{
     console.log(e.target.value, team);
-    axios.post('http://localhost:5000/game/changeTeamNum', {num: e.target.value, team, index}).then(res=>{
+    axios.post('/game/changeTeamNum', {num: e.target.value, team, index}).then(res=>{
       alert(res.data);
     });
   }
