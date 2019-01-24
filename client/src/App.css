@@ -41,6 +41,8 @@
   border-right: 1px solid #bbbbbb;
   background: white;
   line-height: 7.5vw;
+  /* font-weight: bold; */
+  font-size: 4.2vw;
 }
 
 .yourSquare {
@@ -56,6 +58,11 @@
   border: 1px solid #999999;
   background: rgb(21, 255, 0);
   border-radius: 100px;
+
+    background: -webkit-linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* Standard syntax (must be last) */
 }
 .ramsScoreTdOp {
   box-sizing: border-box;
@@ -158,6 +165,10 @@
 
 .winning {
   background: rgb(21, 255, 0);
+  background: -webkit-linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( orange , yellow, rgb(0, 230, 0), rgb(104, 104, 255), rgb(255, 42, 255)); /* Standard syntax (must be last) */
 }
 
 .ramsScoreTd {
