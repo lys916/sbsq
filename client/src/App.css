@@ -83,7 +83,7 @@
   width: 7.5vw;
   height: 7.5vw;
   border: 1px solid #999999;
-  background: #238aff;;
+  background: #3c90fd;;
   border-radius: 100px;
 
 }
@@ -107,7 +107,7 @@
   width: 7.5vw;
   height: 7.5vw;
   border: 1px solid #999999;
-  background: #a659ff;
+  background: #9c76b3;
   border-radius: 100px;
 
 }
@@ -199,7 +199,7 @@
 }
 
 .ramsScoreFg {
-  background: #238aff;
+  background: #3c90fd;;
 }
 
 .ramsScoreSafety {
@@ -207,7 +207,7 @@
 }
 
 .ramsXpNoGood {
-  background: #a659ff;
+ background: #9c76b3;
 }
 .ramsTdGoForTwo {
   background: rgb(131, 131, 131);
