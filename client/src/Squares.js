@@ -243,7 +243,7 @@ class Squares extends Component {
 				- Must purchase square first to play. To purchase, venmo Kao Mouang at 'venmo' or Sing at 'venmo' or give cash to them.
 			</div>
 			<div>
-				Once payment is recieved, lick on the top right corner 'refresh' icon to update your square count, then you can begin playing.
+				- Once payment is recieved, tap on the top right corner 'refresh' icon to update your square count, then you can begin playing.
 			</div>
 			<div>
 				- The team numbers, shapes, colors and scoreboard your're seeing right now is for demonstration only and will be reset later.
