@@ -60,7 +60,7 @@ class Payouts extends Component {
       <div style={styles.rules}>
       <div style={styles.rule}>$10 per square.</div>
       <div style={styles.rule}>Must purchase square first to begin playing.</div>
-      <div style={styles.rule}>To pay for your square, you can venmo Kao Muang at 'venmo' or Sing at 'venmo' or give cash to them.</div>
+      <div style={styles.rule}>To pay for your square, you can venmo Kao Muang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them.</div>
       <div style={styles.rule}>There will be 8 payouts through out the Superbowl (4 payouts for exact score and 4 payouts for reverse score). See payouts below for details. </div>
       <div style={styles.rule}>You can change your picks anytime as long as there is still an empty square. Once all squares are filled up, the board will be locked.</div>
       <div style={styles.rule}>We will have a team number drawing one hour before the Superbowl. Location TBD.</div>

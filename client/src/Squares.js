@@ -243,10 +243,10 @@ class Squares extends Component {
 			<div>Notes:</div>
 			<div style={{textAlign: 'left', fontSize: 12, padding: '2px 10px'}}>
 			<div style={styles.note}>
-				- Must purchase square first to play.
+				- Must purchase square first to play. $10 per square.
 			</div>
 			<div style={styles.note}>
-			 - To purchase, venmo Kao Mouang at 'venmo' or Sing at 'venmo' or give cash to them.
+			 - To purchase, venmo Kao Mouang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them.
 			</div>
 			<div style={styles.note}>
 				- Once payment is recieved, tap on the top right corner 'refresh' icon to update your square count, then you can begin playing.
