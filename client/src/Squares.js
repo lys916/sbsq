@@ -513,7 +513,7 @@ class Squares extends Component {
 					<div style={{display: 'flex', paddingTop: 5}}>
 						<div className="winningOp colorBox"></div>
 						<div className="codeText">
-							Currently winning oposite
+							Currently winning opposite
 						</div>
 					</div>
 

@@ -89,8 +89,8 @@ class Payouts extends Component {
         </div>
         <br/>
         {/* END PAYOUTS */}
-        {/* OPOSITE PAYOUTS */}
-        <div className="flex center"><div className="winning round"></div><div style={{marginBottom: 7}}>PAYOUTS OPOSITE</div></div>
+        {/* OPPOSITE PAYOUTS */}
+        <div className="flex center"><div className="winning round"></div><div style={{marginBottom: 7}}>PAYOUTS OPPOSITE</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>
