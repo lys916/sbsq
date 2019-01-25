@@ -291,15 +291,17 @@ table, td {
   font-weight: 'bold';
 }
 .square {
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   margin-right: 3px;
+  margin-bottom: 5px;
 }
 
 .round {
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   margin-right: 3px;
+  margin-bottom: 5px;
   border-radius: 100px;
 }
 
@@ -329,3 +331,7 @@ table, td {
     background: linear-gradient( rgb(255, 238, 205) , rgb(255, 255, 187), rgb(184, 255, 184), rgb(198, 198, 253), rgb(255, 198, 255)); /* Standard syntax (must be last) */
 }
 
+.font14 {font-size: '14px'}
+.font15 {font-size: '157px'}
+.font13 {font-size: '13px'}
+.font17 {font-size: '1px'}

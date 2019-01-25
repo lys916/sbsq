@@ -61,14 +61,15 @@ class Payouts extends Component {
       <div style={styles.rule}>$10 per square.</div>
       <div style={styles.rule}>Must purchase square first to begin playing.</div>
       <div style={styles.rule}>To pay for your square, you can venmo Kao Muang at 'venmo' or Sing at 'venmo' or give cash to them.</div>
-      <div style={styles.rule}>There will be 8 payouts through out the game (4 payouts for exact scores and 4 payouts for reverse). See payouts below for details. </div>
+      <div style={styles.rule}>There will be 8 payouts through out the Superbowl (4 payouts for exact score and 4 payouts for reverse score). See payouts below for details. </div>
       <div style={styles.rule}>You can change your picks anytime as long as there is still an empty square. Once all squares are filled up, the board will be locked.</div>
       <div style={styles.rule}>We will have a team number drawing one hour before the Superbowl. Location TBD.</div>
       </div>
       </div>
       
         {/* PAYOUTS */}
-        <div className="flex center"><div className="winning square"></div><div style={{marginBottom: 2}}>PAYOUTS</div></div>
+        <div className="flex center">
+          <div className="winning square"></div><div style={styles.title}>PAYOUTS</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>
@@ -92,7 +93,7 @@ class Payouts extends Component {
               <td>?</td>
             </tr>
             <tr>
-              <td>Fourth</td>
+              <td>Final score</td>
               <td>$300</td> 
               <td>?</td>
             </tr>
@@ -101,7 +102,7 @@ class Payouts extends Component {
         <br/>
         {/* END PAYOUTS */}
         {/* OPPOSITE PAYOUTS */}
-        <div className="flex center"><div className="winning round"></div><div style={{marginBottom: 2}}>PAYOUTS REVERSE</div></div>
+        <div className="flex center"><div className="winning round"></div><div style={styles.title}>PAYOUTS REVERSE</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>
@@ -125,7 +126,7 @@ class Payouts extends Component {
               <td>?</td>
             </tr>
             <tr>
-              <td>Fourth</td>
+              <td>Final score</td>
               <td>$50</td> 
               <td>?</td>
             </tr>
@@ -133,7 +134,7 @@ class Payouts extends Component {
         </div>
         {/* END OPOSITI PAYOUT */}
         <br/>
-        <div className="flex center"><div><img style={{width: 24, paddingRight: 3}} src={'/smiley.png'}/></div><div>PLAYERS</div></div>
+        <div className="flex center"><div><img style={{width: 20, paddingRight: 3}} src={'/smiley.png'}/></div><div style={{fontSize: 14}}>PLAYERS</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>
@@ -179,6 +180,12 @@ const styles = {
   rule: {
     borderBottom: '1px solid #bbbbbb',
     marginBottom: 5
+  },
+  payouts: {
+    fontSize: 14
+  },
+  title: {
+    fontSize: 14
   }
 }
 

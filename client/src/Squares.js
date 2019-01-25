@@ -451,7 +451,7 @@ class Squares extends Component {
       </div>
 			{/* COLOR CODES */}
 			<div style={{fontSize: 12}}>- What the colors and shapes mean -</div>
-			<div style={{fontSize: 10}}>The rainbow colors represent the current winners. All other colors represent the next outcomes if a team scores. The square shapes represent exact scores and circle shapes represent reverse scores.</div>
+			<div style={{fontSize: 10}}>The rainbow colors represent the current winners. All other colors represent the next outcomes if a team scores. The square shapes represent exact score and circle shapes represent reverse score.</div>
 			<div className="flex around colorCodes">
 				
 				<div className="patsSection">
