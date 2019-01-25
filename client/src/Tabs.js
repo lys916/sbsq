@@ -73,7 +73,7 @@ class IconTabs extends React.Component {
 					textColor="primary"
 				>
 					<Tab label="Squares" />
-					<Tab label="Payouts" />
+					<Tab label="Rules" />
 					{user.admin ? <Tab label="Admin" /> : null}
 					
 				</Tabs>

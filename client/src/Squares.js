@@ -45,21 +45,7 @@ const styles = {
 	},
   patsNumWrap: {background: '#dedede', borderRight: '1px solid #bbbbbb'},
 
-  ramsNum: {
-		width: '7.5vw', 
-		lineHeight: '7.5vw', 
-		background: '#dedede', 
-		borderRight: '1px solid #bbbbbb',
-		fontSize: '4.5vw'
-	},
-  patsNum: {
-		display: 'flex', 
-		height: '7.5vw', 
-		background: '#dedede', 
-		borderBottom: '1px solid #bbbbbb',
-		lineHeight: '7.5vw',
-		fontSize: '4.5vw'
-	},
+ 
 
   row: {display: 'flex', height: '7.5vw', borderBottom: '1px solid #bbbbbb'
 	},
@@ -211,6 +197,36 @@ class Squares extends Component {
 				}
 			}
 		}
+
+			//should be in a function. Patriots num and score calculations ******
+	const patsScore = this.state.score[0];
+	const patsScoreLen = patsScore.length;
+	const patsScoreLastDigit = patsScore[patsScoreLen - 1];
+	const patsTdString = (Number(patsScore)+7).toString();
+	const patsFgString = (Number(patsScore)+3).toString();
+	const patsSafetyString = (Number(patsScore)+2).toString();
+	const patsNoXpString = (Number(patsScore)+6).toString();
+	const patsTdGoForTwoString = (Number(patsScore)+8).toString();
+	const patsTdLastDigit = patsTdString[patsTdString.length- 1];
+	const patsFgLastDigit = patsFgString[patsFgString.length- 1];
+	const patsSafetyLastDigit = patsSafetyString[patsSafetyString.length- 1];
+	const patsNoXpLastDigit = patsNoXpString[patsNoXpString.length- 1];
+	const patsForTwoLastDigit = patsTdGoForTwoString[patsTdGoForTwoString.length- 1];
+
+	//should be in a function. Rams num and score calculations ********
+	const ramsScore = this.state.score[1];
+	const ramScoreLen = ramsScore.length;
+	const ramsScoreLastDigit = ramsScore[ramScoreLen - 1];
+	const ramsTdString = (Number(ramsScore)+7).toString();
+	const ramsFgString = (Number(ramsScore)+3).toString();
+	const ramsSafetyString = (Number(ramsScore)+2).toString();
+	const ramsNoXpString = (Number(ramsScore)+6).toString();
+	const ramsTdGoForTwoString = (Number(ramsScore)+8).toString();
+	const ramsTdLastDigit = ramsTdString[ramsTdString.length- 1];
+	const ramsFgLastDigit = ramsFgString[ramsFgString.length- 1];
+	const ramsSafetyLastDigit = ramsSafetyString[ramsSafetyString.length- 1];
+	const ramsNoXpLastDigit = ramsNoXpString[ramsNoXpString.length- 1];
+	const ramsForTwoLastDigit = ramsTdGoForTwoString[ramsTdGoForTwoString.length- 1];
 		
     return (
 			<div>
@@ -221,7 +237,19 @@ class Squares extends Component {
 				<div style={styles.availablePicks}>Your squares: {picksMade} / {user.availablePicks} <span><img style={styles.update} src={'/update.png'} onClick={this.refreshUser}/></span></div>
 			</div>
 			<ScoreBoard score={this.state.score} time={this.state.time}/>
-			
+			<div>Notes:</div>
+			<div style={{textAlign: 'left', fontSize: 12, padding: '2px 10px'}}>
+			<div>
+				- The team numbers, square colors and scoreboard at the moment is for demonstration only.
+			</div>
+			<div>
+				- We will have a live drawing for team numbers 1 hour before the superbowl. Location TBD.
+			</div>
+			<div>
+				- All your picks will not be affected, you can continue making your picks until the board is filled up.
+			</div>
+			</div>
+
       <div style={styles.root}>
 				
         <div style={styles.leftName}>
@@ -244,7 +272,7 @@ class Squares extends Component {
 							{/* PATRIOTS */}
               {this.state.patsNum.map((num, index)=>{
                 return(
-                  <div style={styles.patsNum}>
+                  <div className={`patsNum ${num === patsScoreLastDigit ? 'onTheSpot' : null}`}>
 									<div style={styles.cell}>{num === null || num === '' ? '?' : num}</div>
 										{/* if user is admin then show num with dropdown */}
 										{/* {user.admin ?
@@ -270,7 +298,7 @@ class Squares extends Component {
 							{/* RAMS */}
                 {this.state.ramsNum.map((num, index)=>{
                 return(
-                  <div style={styles.ramsNum} onClick={()=>{}}>
+                  <div className={`ramsNum ${num === ramsScoreLastDigit ? 'onTheSpot' : null}`} onClick={()=>{}}>
 									<div style={styles.cell}>{num === null || num === '' ? '?' : num}</div>
                     {/* {user.admin ?
 
@@ -304,35 +332,6 @@ class Squares extends Component {
 												const ramsNum = this.state.ramsNum[col];
 												const patsNum = this.state.patsNum[row];
 
-												//Patriots num and score calculations ******
-												const patsScore = this.state.score[0];
-												const patsScoreLen = patsScore.length;
-												const patsScoreLastDigit = patsScore[patsScoreLen - 1];
-												const patsTdString = (Number(patsScore)+7).toString();
-												const patsFgString = (Number(patsScore)+3).toString();
-												const patsSafetyString = (Number(patsScore)+2).toString();
-												const patsNoXpString = (Number(patsScore)+6).toString();
-												const patsTdGoForTwoString = (Number(patsScore)+8).toString();
-												const patsTdLastDigit = patsTdString[patsTdString.length- 1];
-												const patsFgLastDigit = patsFgString[patsFgString.length- 1];
-												const patsSafetyLastDigit = patsSafetyString[patsSafetyString.length- 1];
-												const patsNoXpLastDigit = patsNoXpString[patsNoXpString.length- 1];
-												const patsForTwoLastDigit = patsTdGoForTwoString[patsTdGoForTwoString.length- 1];
-
-												//Rams num and score calculations ********
-												const ramsScore = this.state.score[1];
-												const ramScoreLen = ramsScore.length;
-												const ramsScoreLastDigit = ramsScore[ramScoreLen - 1];
-												const ramsTdString = (Number(ramsScore)+7).toString();
-												const ramsFgString = (Number(ramsScore)+3).toString();
-												const ramsSafetyString = (Number(ramsScore)+2).toString();
-												const ramsNoXpString = (Number(ramsScore)+6).toString();
-												const ramsTdGoForTwoString = (Number(ramsScore)+8).toString();
-												const ramsTdLastDigit = ramsTdString[ramsTdString.length- 1];
-												const ramsFgLastDigit = ramsFgString[ramsFgString.length- 1];
-												const ramsSafetyLastDigit = ramsSafetyString[ramsSafetyString.length- 1];
-												const ramsNoXpLastDigit = ramsNoXpString[ramsNoXpString.length- 1];
-												const ramsForTwoLastDigit = ramsTdGoForTwoString[ramsTdGoForTwoString.length- 1];
 
 												//get winning cell
 												const winning = ramsNum === ramsScoreLastDigit && patsNum === patsScoreLastDigit && this.state.squares;
@@ -450,11 +449,13 @@ class Squares extends Component {
         </div>
       </div>
 			{/* COLOR CODES */}
+			<div style={{fontSize: 12}}>- What the color and shape means -</div>
+			<div style={{fontSize: 10}}>The rainbow colors represent the current winners. All other colors represent the next outcomes if a team scores. The square shapes represent exact scores and circle shapes represent reverse scores.</div>
 			<div className="flex around colorCodes">
-
+				
 				<div className="patsSection">
 
-					<div style={{display: 'flex', paddingTop: '5px'}}>
+					<div style={{display: 'flex', padding: '15px 0px 10px 0', fontWeight: 'bold'}}>
 					<div className="winning colorBox"></div>
 					<div className="codeText">
 						Currently winning
@@ -510,7 +511,7 @@ class Squares extends Component {
 
 				<div className="ramSection">
 
-					<div style={{display: 'flex', paddingTop: 5}}>
+					<div style={{display: 'flex', padding: '15px 0px 10px 0', fontWeight: 'bold'}}>
 						<div className="winningOp colorBox"></div>
 						<div className="codeText">
 							Currently winning reverse
@@ -564,7 +565,7 @@ class Squares extends Component {
 
 				</div>
 			</div>
-			<div style={{height: 50}}></div>
+			<div style={{height: 70}}></div>
 			</div>
     );
   }

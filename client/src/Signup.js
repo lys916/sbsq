@@ -102,7 +102,7 @@ class Signup extends Component {
           <div style={styles.label}>Your Initials (2-3 letters)</div>
           {this.state.error === 'initials' ? <div style={{color: 'red', fontSize: 12, textAlign: 'left'}}>{this.state.message}</div> : null}
 
-        <input name="initials" type="password" value={this.state.initials} onChange={this.handleOnChange} style={styles.input}/>
+        <input name="initials" value={this.state.initials} onChange={this.handleOnChange} style={styles.input}/>
           <div style={styles.label}>Password</div>
           {this.state.error === 'password' ? <div style={{color: 'red', fontSize: 12, textAlign: 'left'}}>{this.state.message}</div> : null}
 
