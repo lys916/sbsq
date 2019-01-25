@@ -51,7 +51,7 @@ userRouter.post('/addSquare', function(req, res){
 });
 
 userRouter.post('/', function(req, res){
-	User.find(req.body.id).then(user => {
+	User.findById(req.body.id).then(user => {
 		res.json(user);
 	});
 });
