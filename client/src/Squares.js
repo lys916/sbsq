@@ -240,14 +240,15 @@ class Squares extends Component {
 			<div>Notes:</div>
 			<div style={{textAlign: 'left', fontSize: 12, padding: '2px 10px'}}>
 			<div>
-				- The team numbers, square colors and scoreboard at the moment is for demonstration only.
+				- The team numbers, shapes, colors and scoreboard your're seeing right now is for demonstration only and will be reset later.
 			</div>
 			<div>
-				- We will have a live drawing for team numbers 1 hour before the superbowl. Location TBD.
+				- All your picks will NOT be affected, you can continue making your picks until the board is filled up.
 			</div>
 			<div>
-				- All your picks will not be affected, you can continue making your picks until the board is filled up.
+				- We will have a live drawing for the team numbers one hour before the Superbowl. Location TBD.
 			</div>
+			
 			</div>
 
       <div style={styles.root}>
@@ -449,7 +450,7 @@ class Squares extends Component {
         </div>
       </div>
 			{/* COLOR CODES */}
-			<div style={{fontSize: 12}}>- What the color and shape means -</div>
+			<div style={{fontSize: 12}}>- What the colors and shapes mean -</div>
 			<div style={{fontSize: 10}}>The rainbow colors represent the current winners. All other colors represent the next outcomes if a team scores. The square shapes represent exact scores and circle shapes represent reverse scores.</div>
 			<div className="flex around colorCodes">
 				

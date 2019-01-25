@@ -55,14 +55,16 @@ class Payouts extends Component {
     }
     return (
       <div style={styles.root}>
-      <div style={{fontSize: 20}}>Rules</div>
+      <div style={{fontSize: 16}}>Rules</div>
       <div style={{textAlign: 'left'}}>
-      <div>$10 per square</div>
-      <div>Must pay first before receiving your square</div>
-      <div>To pay for your square, you can venmo Kao Muang at 'venmo' or Sing at 'venmo' or give cash to them.</div>
-      <div>There will be 8 payouts through out the game (4 payouts for exact scores and 4 payouts for reverse scores for each quarter). See payouts below. </div>
-      <div>You can change your picks anytime if there is still an empty square. Once it's filled up, the board will be locked.</div>
-      <div>We will have a team number drawing 1 hour before superbowl starts. Location TBD.</div>
+      <div style={styles.rules}>
+      <div style={styles.rule}>$10 per square.</div>
+      <div style={styles.rule}>Must purchase square first to begin playing.</div>
+      <div style={styles.rule}>To pay for your square, you can venmo Kao Muang at 'venmo' or Sing at 'venmo' or give cash to them.</div>
+      <div style={styles.rule}>There will be 8 payouts through out the game (4 payouts for exact scores and 4 payouts for reverse). See payouts below for details. </div>
+      <div style={styles.rule}>You can change your picks anytime as long as there is still an empty square. Once all squares are filled up, the board will be locked.</div>
+      <div style={styles.rule}>We will have a team number drawing one hour before the Superbowl. Location TBD.</div>
+      </div>
       </div>
       
         {/* PAYOUTS */}
@@ -169,6 +171,14 @@ const styles = {
   button: {
     fontSize: 20,
     padding: '5px 10px'
+  },
+  rules: {
+    fontSize: 13,
+    padding: '3px 10px'
+  },
+  rule: {
+    borderBottom: '1px solid #bbbbbb',
+    marginBottom: 5
   }
 }
 
