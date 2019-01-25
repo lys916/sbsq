@@ -252,7 +252,7 @@ class Squares extends Component {
 				- Once payment is recieved, tap on the top right corner 'refresh' icon to update your square count, then you can begin playing.
 			</div>
 			<div style={styles.note}>
-				- The team numbers, shapes, colors and scoreboard your're seeing right now is for demonstration only and will be reset later.
+				- The team numbers, shapes, colors and scoreboard you're seeing right now is for demonstration only and will be reset later.
 			</div>
 			<div style={styles.note}>
 				- All your picks will NOT be affected, you can continue making your picks until the board is filled up.
