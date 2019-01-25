@@ -41,8 +41,9 @@
   border-right: 1px solid #bbbbbb;
   background: white;
   line-height: 7.5vw;
-  /* font-weight: bold; */
-  font-size: 4.2vw;
+  font-weight: bold;
+  font-size: 2.8vw;
+
 }
 
 .yourSquare {
