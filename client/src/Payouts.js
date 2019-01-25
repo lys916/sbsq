@@ -55,9 +55,9 @@ class Payouts extends Component {
     }
     return (
       <div style={styles.root}>
-      <br/>
+      <div style={{textAlign: 'left', padding: '5px 0px 0px 10px', fontSize: 20}}>$10 per square</div>
         {/* PAYOUTS */}
-        <div className="flex center"><div className="winning square"></div><div style={{marginBottom: 7}}>PAYOUTS</div></div>
+        <div className="flex center"><div className="winning square"></div><div style={{marginBottom: 2}}>PAYOUTS</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>
@@ -90,7 +90,7 @@ class Payouts extends Component {
         <br/>
         {/* END PAYOUTS */}
         {/* OPPOSITE PAYOUTS */}
-        <div className="flex center"><div className="winning round"></div><div style={{marginBottom: 7}}>PAYOUTS OPPOSITE</div></div>
+        <div className="flex center"><div className="winning round"></div><div style={{marginBottom: 2}}>PAYOUTS REVERSE</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>
@@ -122,7 +122,7 @@ class Payouts extends Component {
         </div>
         {/* END OPOSITI PAYOUT */}
         <br/>
-        <div className="flex center"><div><img style={{width: 24, paddingRight: 10}} src={'/smiley.png'}/></div><div>PLAYERS</div></div>
+        <div className="flex center"><div><img style={{width: 24, paddingRight: 3}} src={'/smiley.png'}/></div><div>PLAYERS</div></div>
         <div style={styles.payouts}>
           <table>
             <tr>

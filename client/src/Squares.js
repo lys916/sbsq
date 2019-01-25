@@ -180,7 +180,7 @@ class Squares extends Component {
     		});
 			// user dont' have anymore square
 			}else{
-				alert("You don't have any available square, go buy some!");
+				alert("You don't have any available square.");
 			}
 
 				
@@ -513,7 +513,7 @@ class Squares extends Component {
 					<div style={{display: 'flex', paddingTop: 5}}>
 						<div className="winningOp colorBox"></div>
 						<div className="codeText">
-							Currently winning opposite
+							Currently winning reverse
 						</div>
 					</div>
 
