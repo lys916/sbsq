@@ -79,6 +79,9 @@ const styles = {
 	update: {
 		width: 19,
 		marginBottom: -4
+	},
+	note: {
+		borderBottom: '1px solid #bbbbbb'
 	}
 } 
 
@@ -239,19 +242,22 @@ class Squares extends Component {
 			<ScoreBoard score={this.state.score} time={this.state.time}/>
 			<div>Notes:</div>
 			<div style={{textAlign: 'left', fontSize: 12, padding: '2px 10px'}}>
-			<div>
-				- Must purchase square first to play. To purchase, venmo Kao Mouang at 'venmo' or Sing at 'venmo' or give cash to them.
+			<div style={styles.note}>
+				- Must purchase square first to play.
 			</div>
-			<div>
+			<div style={styles.note}>
+			 - To purchase, venmo Kao Mouang at 'venmo' or Sing at 'venmo' or give cash to them.
+			</div>
+			<div style={styles.note}>
 				- Once payment is recieved, tap on the top right corner 'refresh' icon to update your square count, then you can begin playing.
 			</div>
-			<div>
+			<div style={styles.note}>
 				- The team numbers, shapes, colors and scoreboard your're seeing right now is for demonstration only and will be reset later.
 			</div>
-			<div>
+			<div style={styles.note}>
 				- All your picks will NOT be affected, you can continue making your picks until the board is filled up.
 			</div>
-			<div>
+			<div style={styles.note}>
 				- We will have a live drawing for the team numbers one hour before the Superbowl. Location TBD.
 			</div>
 			
