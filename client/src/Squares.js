@@ -35,7 +35,9 @@ class Squares extends Component {
 		open: false,
 		removeSq: null,
 		status: '',
+		dialogType: null,
 		anchorEl: null,
+		dialogMessage: ''
   }
 
   componentDidMount(){
@@ -105,7 +107,7 @@ class Squares extends Component {
 		//if user remvoe square
 		const sqName = this.state.squares[sq].name;
 		if(sqName === user.initials){
-			this.setState({open: true, removeSq: sq});
+			this.setState({open: true, removeSq: sq, dialogType: 'remove', dialogMessage: 'Remove your name from this square?'});
 		}
 
 		else if(sqName === null || sqName === ''){
@@ -135,13 +137,13 @@ class Squares extends Component {
     		});
 			// user dont' have anymore square
 			}else{
-				alert("You don't have any available square.");
+				this.setState({open: true, dialogType: 'noSq', dialogMessage: "You don't have any available square."});
 			}
 
 				
 			}
 		else{
-			alert("This square is taken.");
+			this.setState({open: true, dialogType: 'taken', dialogMessage: 'This square is taken.'});
 		}
 
 		
@@ -214,37 +216,39 @@ class Squares extends Component {
         
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Remove your name from this square?
+							{this.state.dialogMessage}
             </DialogContentText>
           </DialogContent>
+					{/* remove type */}
+					{this.state.dialogType === 'remove' ? 
           <DialogActions>
+						
             <Button onClick={this.handleClose} color="primary">
               No
             </Button>
             <Button onClick={()=>{this.removeSq(this.state.removeSq, user)}} color="primary" autoFocus>
               Yes
             </Button>
-          </DialogActions>
+          </DialogActions> : null }
+					{/* square taken type */}
+					{this.state.dialogType === 'taken' ? 
+          <DialogActions>
+						
+            <Button onClick={this.handleClose} color="primary">
+              Ok
+            </Button>
+          </DialogActions> : null }
+
+					{/* square taken type */}
+					{this.state.dialogType === 'noSq' ? 
+          <DialogActions>
+						
+            <Button onClick={this.handleClose} color="primary">
+              Ok
+            </Button>
+          </DialogActions> : null }
+
         </Dialog>
-
-				{/* POPOVER */}
-				<Popover
-          id="simple-popper"
-          open={open}
-          anchorEl={anchorEl}
-          onClose={this.handleClosePopover}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-        >
-          <Typography style={styles.typography}>The content of the Popover.</Typography>
-        </Popover>
-
 
 			<div style={styles.username}>
 
