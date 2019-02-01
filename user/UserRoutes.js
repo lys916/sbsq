@@ -9,9 +9,10 @@ userRouter.post('/signup', function(req, res){
 	const { initials, password, name } = req.body;
 	console.log('user signing up', req.body);
 	User.find({initials}).then(userFound=>{
-		console.log('user found', userFound);
+		console.log('user found', userFound.length);
 		if(userFound.length > 0){
-			res.json({errorMessage: 'Initials taken, try a different one'})
+			console.log('res with error');
+			res.json({error: true, errorMessage: `Initials "${initials}" is taken, try a different one`})
 		}else{
 			const user = new User();
 			user.initials = initials;
@@ -57,22 +58,20 @@ userRouter.post('/', function(req, res){
 });
 
 userRouter.get('/', function(req, res){
-	User.find().then(user => {
+	User.find().sort({ availablePicks: -1 }).then(user => {
 		res.json(user);
 	});
 });
 
 userRouter.post('/login', function(req, res){
-	console.log('user logging in server', req.body);
-	logger.info('logger, user login xxxxxxxxxxxxxxx XXXXXXXXXXXXXXXXXXX')
 	const { initials, password } = req.body;
 	User.findOne({ initials }).then(user => {
 		if(!user){
-			res.json({errorMessage: 'Wrong initials or password'});
+			res.json({error: true, errorType: 'initials'});
 		}
 		if(user){
 			if(password !== user.password){
-				res.json({errorMessage: 'Wrong initials or password'});
+				res.json({error: true, errorType: 'password'});
 			}else{
 				res.json(user);
 			}

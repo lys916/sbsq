@@ -7,7 +7,24 @@ const GameSchema = new mongoose.Schema({
 	ramsNum: [{type: String}],
 	score: [{type: String}],
 	time: [{type: String}],
-    squares: mongoose.Schema.Types.Mixed
+    squares: mongoose.Schema.Types.Mixed,
+	status: {type: String},
+	q1Winner: {type: String},
+
+	q2Winner: {type: String},
+
+	q3Winner: {type: String},
+
+	q4Winner: {type: String},
+
+	q1WinnerRv: {type: String},
+
+	q2WinnerRv: {type: String},
+
+	q3WinnerRv: {type: String},
+
+	q4WinnerRv: {type: String}
+
 });
 
 const GameModel = mongoose.model('Game', GameSchema);

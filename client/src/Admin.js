@@ -15,24 +15,42 @@ class Admin extends Component {
     ramsNum: [],
     patsNum: [],
     time: '', 
-    score: ''
+    score: '',
+    status: ''
   }
 
   componentDidMount(){
    
     axios.get('/game').then(res=>{
      
-      const {squares, ramsNum, patsNum, time, score} = res.data;
+      const {squares, ramsNum, patsNum, time, score, status} = res.data;
       this.setState({
         ramsNum,
         patsNum,
 				score,
 				time,
         patsScore: score[0],
-        ramsScore: score[1]
+        ramsScore: score[1],
+        status
       })
     });
   }
+
+  changeGameStatus = ()=>{
+    console.log('changing game status');
+    let toUpdate = '';
+    if(this.state.status === 'open'){
+      toUpdate = 'locked'
+    }
+    if(this.state.status === 'locked'){
+      toUpdate = 'open'
+    }
+    axios.post('/game/updateStatus', {toUpdate}).then(res=>{
+      this.setState({status: res.data.status});
+      alert(res.data.message);
+    });
+    }
+
 
   handleOnChange = (event)=>{
     this.setState({
@@ -82,6 +100,10 @@ class Admin extends Component {
     }
     return (
       <div style={styles.root}>
+      {/* GAME STATUS */}
+      <div>Game status is: {this.state.status}</div>
+      {this.state.status !== '' ?
+      <button onClick={this.changeGameStatus}>{this.state.status === 'locked' ? 'Open game' : 'Lock game'}</button> : null }
 
         <div style={styles.admin}>
           {/* UPATE SCORES */}
@@ -160,7 +182,12 @@ class Admin extends Component {
             )
           })
         }
+
+        {/* UPDATE WINNERS */}
+        {/* <input name="quarter" value/> */}
+ 
         
+
       </div>
     );
   }

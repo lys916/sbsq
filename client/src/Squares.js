@@ -4,86 +4,23 @@ import './App.css';
 import axios from 'axios';
 import IconTabs from './Tabs';
 import ScoreBoard from './ScoreBoard';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+// import Button from '@material-ui/core/Button';
+import Popover from '@material-ui/core/Popover';
 
 const sq = [...Array(10).keys()];
 
 const user = null;
 
-const styles = {
-  root: {
-		display: 'flex', 
-		justifyContent: 'center', 
-		marginTop: 10,
-	},
-	board: {
-		display: 'flex', 
-		justifyContent: 'center',
-		borderRight: '3px solid #0f2D72',
-		borderBottom: '3px solid #002244',
-	},
-  // rightSection: {
-  //   border: '1px solid blue', 
-  //   width: '100%'
-  // },
-  topName: {
-		height: '7.5vw', 
-		background: '#0f2D72', 
-		color: '#ffcd00', 
-		letterSpacing: 6,
-		textAlign: 'center',
-		lineHeight: '7.5vw',
-		fontSize: '4.5vw'
-	},
-  leftName: {background: 'gray', background: '#002244', color: 'white', fontSize: '4.7vw', color: '#C60C30'},
-  ramsNumWrap: {
-		display: 'flex', 
-		background: '#dedede',
-		
-		// justifyContent:'center',
-    // alignContent:'center',
-    // flexDirection:'row', /* column | row */
-	},
-  patsNumWrap: {background: '#dedede', borderRight: '1px solid #bbbbbb'},
 
- 
-
-  row: {display: 'flex', height: '7.5vw', borderBottom: '1px solid #bbbbbb'
-	},
-
-  squares: {},
-  blankOut: {width: '7.5vw', height: '7.5vw', background: '#0a2456'},
-  blankIn: {
-		width: '7.5vw', 
-		height: '7.5vw', 
-		background: '#bbbbbb', 
-		position: 'relative'
-		// borderBottom: '1px solid #bbbbbb', 
-		// borderRight: '1px solid #bbbbbb'
-	},
-	cell: {
-		textAlign: 'center',
-		width: '7.5vw'
-	},
-	username: {
-		background: '#555555',
-		fontSize: 14,
-		textAlign: 'left',
-		padding: '5px 7px',
-		color: '#dedede',
-		display: 'flex',
-		justifyContent: 'space-between',
-	},
-	arrows: {
-		width: '100%'
-	},
-	update: {
-		width: 19,
-		marginBottom: -4
-	},
-	note: {
-		borderBottom: '1px solid #bbbbbb'
-	}
-} 
 
 class Squares extends Component {
   state = {
@@ -94,24 +31,43 @@ class Squares extends Component {
     toInsert: null,
 		score: ['', ''],
 		time: '',
-		user: JSON.parse(localStorage.getItem('user'))
+		user: JSON.parse(localStorage.getItem('user')),
+		open: false,
+		removeSq: null,
+		status: '',
+		anchorEl: null,
   }
 
   componentDidMount(){
    
     axios.get('/game').then(res=>{
      
-      const {squares, ramsNum, patsNum, teams, time, score} = res.data;
+      const {squares, ramsNum, patsNum, teams, time, score, status} = res.data;
       this.setState({
         squares, 
         ramsNum,
         patsNum,
         teams,
 				score,
-				time
+				time,
+				status
       })
     });
   }
+
+	handleClosePopover = () => {
+    this.setState({
+      anchorEl: null,
+    });
+  };
+
+	handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
   handleSignout = ()=>{
     localStorage.removeItem('user');
@@ -126,20 +82,30 @@ class Squares extends Component {
 		});
 	}
 
-  pickSq = (sq, user)=>{
-		// get number of picked squares by this user
-		console.log(this.state.squares[sq].name, user.initials);
+	removeSq = (sq, user)=>{
+		// remove name
+		console.log('removing sq name');
+				axios.post('/game/pickSq', {sq, user}).then(res=>{
+					console.log('removed');
+				this.setState({squares: res.data.squares, open: false});
+      
+    	});
+	}
 
+  pickSq = (event, sq, user, sqOwner)=>{
+		console.log(this.state.status);
+		// get number of picked squares by this user
+		// console.log(this.state.squares[sq].name, user.initials);
+		if(this.state.status === 'locked'){
+			// console.log(event.currentTarget);
+			// this.setState({
+			// 	anchorEl: event.currentTarget,
+			// });
+		}else if(this.state.status === 'open'){
 		//if user remvoe square
 		const sqName = this.state.squares[sq].name;
 		if(sqName === user.initials){
-			// remove name
-				axios.post('/game/pickSq', {sq, user}).then(res=>{
-		
-				this.setState({squares: res.data.squares});
-	
-      
-    	});
+			this.setState({open: true, removeSq: sq});
 		}
 
 		else if(sqName === null || sqName === ''){
@@ -180,7 +146,7 @@ class Squares extends Component {
 
 		
 
-		
+		} // if else locked
   }
 
   render() {
@@ -200,6 +166,10 @@ class Squares extends Component {
 				}
 			}
 		}
+
+		const { classes } = this.props;
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
 			//should be in a function. Patriots num and score calculations ******
 	const patsScore = this.state.score[0];
@@ -233,6 +203,49 @@ class Squares extends Component {
 		
     return (
 			<div>
+
+			{/* Dialog */}
+			<Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+        
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Remove your name from this square?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              No
+            </Button>
+            <Button onClick={()=>{this.removeSq(this.state.removeSq, user)}} color="primary" autoFocus>
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+				{/* POPOVER */}
+				<Popover
+          id="simple-popper"
+          open={open}
+          anchorEl={anchorEl}
+          onClose={this.handleClosePopover}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+        >
+          <Typography style={styles.typography}>The content of the Popover.</Typography>
+        </Popover>
+
+
 			<div style={styles.username}>
 
 				<div>Hello, {user.name} <span><img style={styles.update} src={'/signout.png'} onClick={this.handleSignout}/></span></div>
@@ -240,15 +253,15 @@ class Squares extends Component {
 				<div style={styles.availablePicks}>Your squares: {picksMade} / {user.availablePicks} <span><img style={styles.update} src={'/update.png'} onClick={this.refreshUser}/></span></div>
 			</div>
 			<ScoreBoard score={this.state.score} time={this.state.time}/>
-			<div>Notes:</div>
+			{/* <div>Notes:</div> */}
 			<div style={{textAlign: 'left', fontSize: 12, padding: '2px 10px'}}>
 			<div style={styles.note}>
-				- Must purchase square first to play. $10 per square.
+				- $10 per square.
 			</div>
 			<div style={styles.note}>
 			 - To purchase, venmo Kao Mouang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them.
 			</div>
-			<div style={styles.note}>
+			{/* <div style={styles.note}>
 				- Once payment is recieved, tap on the top right corner 'refresh' icon to update your square count, then you can begin playing.
 			</div>
 			<div style={styles.note}>
@@ -259,7 +272,7 @@ class Squares extends Component {
 			</div>
 			<div style={styles.note}>
 				- We will have a live drawing for the team numbers one hour before the Superbowl. Location TBD.
-			</div>
+			</div> */}
 			
 			</div>
 
@@ -433,7 +446,7 @@ class Squares extends Component {
 														${ramsTdGoForTwo ? 'ramsTdGoForTwo' : null}
 														
 														`}
-														onClick={()=>{this.pickSq(num, user)}}>
+														onClick={(e)=>{this.pickSq(e, num, user)}}>
 														<div className={`
 
 															${ramsNeedSafetyOp ? 'ramsScoreSafetyOp' : null}
@@ -583,5 +596,81 @@ class Squares extends Component {
     );
   }
 }
+
+const styles = {
+  root: {
+		display: 'flex', 
+		justifyContent: 'center', 
+		marginTop: 10,
+	},
+	board: {
+		display: 'flex', 
+		justifyContent: 'center',
+		borderRight: '3px solid #0f2D72',
+		borderBottom: '3px solid #002244',
+	},
+  // rightSection: {
+  //   border: '1px solid blue', 
+  //   width: '100%'
+  // },
+  topName: {
+		height: '7.5vw', 
+		background: '#0f2D72', 
+		color: '#ffcd00', 
+		letterSpacing: 6,
+		textAlign: 'center',
+		lineHeight: '7.5vw',
+		fontSize: '4.5vw'
+	},
+  leftName: {background: 'gray', background: '#002244', color: 'white', fontSize: '4.7vw', color: '#C60C30'},
+  ramsNumWrap: {
+		display: 'flex', 
+		background: '#dedede',
+		
+		// justifyContent:'center',
+    // alignContent:'center',
+    // flexDirection:'row', /* column | row */
+	},
+  patsNumWrap: {background: '#dedede', borderRight: '1px solid #bbbbbb'},
+
+ 
+
+  row: {display: 'flex', height: '7.5vw', borderBottom: '1px solid #bbbbbb'
+	},
+
+  squares: {},
+  blankOut: {width: '7.5vw', height: '7.5vw', background: '#0a2456'},
+  blankIn: {
+		width: '7.5vw', 
+		height: '7.5vw', 
+		background: '#bbbbbb', 
+		position: 'relative'
+		// borderBottom: '1px solid #bbbbbb', 
+		// borderRight: '1px solid #bbbbbb'
+	},
+	cell: {
+		textAlign: 'center',
+		width: '7.5vw'
+	},
+	username: {
+		background: '#555555',
+		fontSize: 14,
+		textAlign: 'left',
+		padding: '5px 7px',
+		color: '#dedede',
+		display: 'flex',
+		justifyContent: 'space-between',
+	},
+	arrows: {
+		width: '100%'
+	},
+	update: {
+		width: 19,
+		marginBottom: -4
+	},
+	note: {
+		borderBottom: '1px solid #bbbbbb'
+	}
+} 
 
 export default Squares;

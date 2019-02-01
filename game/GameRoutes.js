@@ -69,6 +69,13 @@ gameRouter.post('/changeTeamNum', function(req, res){
   });
 });
 
+gameRouter.post('/updateStatus', function(req, res){
+  Game.findByIdAndUpdate('5c47991c8b96ef4ef44d6a94', {$set: {status: req.body.toUpdate}}, {'new': true}).then(updated=>{
+
+    res.json({message: 'status updated', status: updated.status});
+  });
+});
+
 gameRouter.post('/updateScores', function(req, res){
   Game.findByIdAndUpdate('5c47991c8b96ef4ef44d6a94', {$set: {score: req.body.score, time: req.body.time}}, {'new': true}).then(updated=>{
 

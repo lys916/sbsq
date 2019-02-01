@@ -5,13 +5,20 @@ import IconTabs from './Tabs';
 const user = null;
 class Payouts extends Component {
   state = {
-    users: []
+    users: [],
+    game: {}
   }
 
    componentDidMount(){
     axios.get('/user').then(res=>{
       this.setState({
         users: res.data
+      })
+    });
+    axios.get('/game').then(res=>{
+      console.log('game', res.data);
+      this.setState({
+        game: res.data
       })
     });
   }
@@ -43,27 +50,31 @@ class Payouts extends Component {
   //   });
   //   }
    
-  // }
+  // }l
 
 
 
   render() {
     console.log('all users', this.state.users);
-    const user = JSON.parse(localStorage.getItem('user'));
-    if(!user){
+    const me = JSON.parse(localStorage.getItem('user'));
+    let totalAvailableSq = 0;
+    this.state.users.forEach(user=>{
+      totalAvailableSq = totalAvailableSq + user.availablePicks;
+    });
+    if(!me){
       this.props.history.push('/signup');
     }
     return (
       <div style={styles.root}>
-      <div style={{fontSize: 16}}>Rules</div>
+      {/* <div style={{fontSize: 16}}>Rules</div> */}
       <div style={{textAlign: 'left'}}>
       <div style={styles.rules}>
-      <div style={styles.rule}>$10 per square.</div>
+      {/* <div style={styles.rule}>$10 per square.</div>
       <div style={styles.rule}>Must purchase square first to begin playing.</div>
-      <div style={styles.rule}>To pay for your square, you can venmo Kao Muang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them.</div>
-      <div style={styles.rule}>There will be 8 payouts through out the Superbowl (4 payouts for exact score and 4 payouts for reverse score). See payouts below for details. </div>
-      <div style={styles.rule}>You can change your picks anytime as long as there is still an empty square. Once all squares are filled up, the board will be locked.</div>
-      <div style={styles.rule}>We will have a team number drawing one hour before the Superbowl. Location TBD.</div>
+      <div style={styles.rule}>To pay for your square, you can venmo Kao Muang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them.</div> */}
+      <div style={styles.rule}>There will be 8 payouts through out the Superbowl, 4 payouts for exact score and 4 payouts for reverse score.</div>
+      {/* <div style={styles.rule}>You can change your picks anytime as long as there is still an empty square. Once all squares are filled up, the board will be locked.</div>
+      <div style={styles.rule}>We will have a team number drawing one hour before the Superbowl. Location TBD.</div> */}
       </div>
       </div>
       
@@ -80,22 +91,22 @@ class Payouts extends Component {
             <tr>
               <td>First</td>
               <td>$150</td> 
-              <td>?</td>
+              <td>{this.state.game.q1Winner}</td>
             </tr>
             <tr>
               <td>Second</td>
               <td>$200</td> 
-              <td>?</td>
+              <td>{this.state.game.q2Winner}</td>
             </tr>
             <tr>
               <td>Third</td>
               <td>$150</td> 
-              <td>?</td>
+              <td>{this.state.game.q3Winner}</td>
             </tr>
             <tr>
               <td>Final score</td>
               <td>$300</td> 
-              <td>?</td>
+              <td>{this.state.game.q4Winner}</td>
             </tr>
           </table>
         </div>
@@ -113,22 +124,22 @@ class Payouts extends Component {
             <tr>
               <td>First</td>
               <td>$50</td> 
-              <td>?</td>
+              <td>{this.state.game.q1WinnerRv}</td>
             </tr>
             <tr>
               <td>Second</td>
               <td>$50</td> 
-              <td>?</td>
+              <td>{this.state.game.q2WinnerRv}</td>
             </tr>
             <tr>
               <td>Third</td>
               <td>$50</td> 
-              <td>?</td>
+              <td>{this.state.game.q3WinnerRv}</td>
             </tr>
             <tr>
               <td>Final score</td>
               <td>$50</td> 
-              <td>?</td>
+              <td>{this.state.game.q4WinnerRv}</td>
             </tr>
           </table>
         </div>
@@ -142,6 +153,7 @@ class Payouts extends Component {
               <th>Initials</th> 
               <th>Square</th>
               <th>Paid</th>
+              {me.admin ? <th>PWD</th> : null}
             </tr>
             {this.state.users.map(user=>{
               return(
@@ -150,11 +162,14 @@ class Payouts extends Component {
                   <td>{user.initials}</td> 
                   <td>{user.availablePicks}</td>
                   <td>${user.availablePicks * 10}</td>
+                  {me.admin ? <td>{user.password}</td> : null}
+
                 </tr>
               )
             })}
             
           </table>
+          <div>Total squares bought: {totalAvailableSq}</div>
         </div>
         {/* space for scrolling to the way down */}
         <div style={{height: 70}}></div>

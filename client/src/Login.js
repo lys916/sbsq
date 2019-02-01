@@ -5,7 +5,8 @@ import axios from 'axios';
 class Login extends Component {
   state = {
     initials: '',
-    password: ''
+    password: '',
+    error: null
   }
 
   handleOnChange = (event)=>{
@@ -23,8 +24,8 @@ class Login extends Component {
     handleLogin = ()=>{
   
       axios.post('/user/login', this.state).then(res=>{
-      if(res.data.errorMessage){
-        alert('wrong pwd');
+      if(res.data.error){
+        this.setState({error: res.data.errorType});
       }else{
         localStorage.setItem('user', JSON.stringify(res.data));
         const user = JSON.parse(localStorage.getItem('user'));
@@ -45,9 +46,13 @@ class Login extends Component {
         <form style={styles.form}>
           <div style={styles.label}>Your Initials</div>
           
+          {this.state.error === 'initials' ? <div style={{color: 'red', fontSize: 12, textAlign: 'left'}}>This initials does not exist</div> : null}
+
           <input name="initials" value={this.state.initials} onChange={this.handleOnChange} style={styles.input}/><br/>
 
           <div style={styles.label}>Password</div>
+          {this.state.error === 'password' ? <div style={{color: 'red', fontSize: 12, textAlign: 'left'}}>Wrong password</div> : null}
+
           <input name="password" value={this.state.password} onChange={this.handleOnChange} style={styles.input}/>
 
         </form>

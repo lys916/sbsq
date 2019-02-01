@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 class Signup extends Component {
@@ -71,13 +77,17 @@ class Signup extends Component {
     }
     else{
       axios.post('/user/signup', this.state).then(res=>{
-        localStorage.setItem('user', JSON.stringify(res.data));
-        const user = JSON.parse(localStorage.getItem('user'));
-
-        if(!user){
-          this.props.history.push('/signup');
+        if(res.data.error){
+          this.setState({error: 'initials', message: res.data.errorMessage});
         }else{
-          this.props.history.push('/squares');
+          localStorage.setItem('user', JSON.stringify(res.data));
+          const user = JSON.parse(localStorage.getItem('user'));
+
+          if(!user){
+            this.props.history.push('/signup');
+          }else{
+            this.props.history.push('/squares');
+          }
         }
       });
     }
@@ -98,6 +108,7 @@ class Signup extends Component {
 
         {this.state.error === 'name' ? <div style={{color: 'red', fontSize: 12, textAlign: 'left'}}>{this.state.message}</div> : null}
 
+
         <input name="name" value={this.state.name} onChange={this.handleOnChange} style={styles.input}/>
           <div style={styles.label}>Your Initials (2-3 letters)</div>
           {this.state.error === 'initials' ? <div style={{color: 'red', fontSize: 12, textAlign: 'left'}}>{this.state.message}</div> : null}
@@ -110,6 +121,7 @@ class Signup extends Component {
         </form>
         <button onClick={this.handleSignup} style={styles.button}>Sign Up</button>
         <div>Already have an account? <span onClick={()=>{this.props.history.push('/login')}}>Login!</span></div>
+      
       </div>
       
       
