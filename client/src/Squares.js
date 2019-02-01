@@ -273,10 +273,10 @@ class Squares extends Component {
 			</div>
 			<div style={styles.note}>
 				- All your picks will NOT be affected, you can continue making your picks until the board is filled up.
-			</div>
+			</div>*/}
 			<div style={styles.note}>
 				- We will have a live drawing for the team numbers one hour before the Superbowl. Location TBD.
-			</div> */}
+			</div> 
 			
 			</div>
 
