@@ -137,7 +137,7 @@ class Squares extends Component {
     		});
 			// user dont' have anymore square
 			}else{
-				this.setState({open: true, dialogType: 'noSq', dialogMessage: "You don't have any available square."});
+				this.setState({open: true, dialogType: 'noSq', dialogMessage: "You don't have any available squares. Text Lo at 7073448060 to get more."});
 			}
 
 				
@@ -263,7 +263,10 @@ class Squares extends Component {
 				- $10 per square.
 			</div>
 			<div style={styles.note}>
-			 - To purchase, venmo Kao Mouang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them.
+			 - To get some squares, text Lo @ 707-344-8060 and let him know how many squares you want.
+			</div>
+			<div style={styles.note}>
+			 - To pay for your squares, venmo Kao Mouang at '@Kao-M-Saephan' or Sing at '@Singta-Lee' or give cash to them. Please pay before the Superbowl game starts. Thank you.
 			</div>
 			{/* <div style={styles.note}>
 				- Once payment is recieved, tap on the top right corner 'refresh' icon to update your square count, then you can begin playing.
